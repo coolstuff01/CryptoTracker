@@ -552,7 +552,7 @@ $(document).ready(function() {
 <div class="col-md-6 col-sm-6 col-xs-12">
   <div class="x_panel tile fixed_height_320">
 	<div class="x_title">
-	  <h2>Total Value of each </h2>
+	  <h2>Asset value in base currency</h2>
 	  <ul class="nav navbar-right panel_toolbox">
 		<li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
 		</li>
@@ -582,7 +582,7 @@ $(document).ready(function() {
 <div class="col-md-6 col-sm-6 col-xs-12">
   <div class="x_panel tile fixed_height_320">
 	<div class="x_title">
-	  <h2>bb</h2>
+	  <h2>Asset value change over timeframe</h2>
 	  <ul class="nav navbar-right panel_toolbox">
 		<li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
 		</li>
@@ -612,7 +612,7 @@ $(document).ready(function() {
 <div class="col-md-6 col-sm-6 col-xs-12">
   <div class="x_panel tile fixed_height_320">
 	<div class="x_title">
-	  <h2>aa</h2>
+	  <h2>Portfolio composition</h2>
 	  <ul class="nav navbar-right panel_toolbox">
 		<li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
 		</li>
@@ -642,7 +642,7 @@ $(document).ready(function() {
 <div class="col-md-6 col-sm-6 col-xs-12">
   <div class="x_panel tile fixed_height_320">
   <div class="x_title">
-    <h2>aa</h2>
+    <h2>Volume traded in base currency</h2>
     <ul class="nav navbar-right panel_toolbox">
     <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
     </li>
