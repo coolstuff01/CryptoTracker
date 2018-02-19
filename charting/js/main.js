@@ -493,10 +493,18 @@ function coinMarketCap(){
         scales: {
             yAxes: [{
                 ticks: {
-                    beginAtZero: true
+                    beginAtZero: true,
+                    callback: function(value, index, values) {
+                        return Math.round(value.toFixed(4) * 100) / 100 + "%";
+                    }
                 }
             }]
         },
+    layout: {
+        padding: {
+            left: 10
+        }
+    },
 		responsive: true,
 		maintainAspectRatio: false
       }
@@ -532,7 +540,7 @@ function coinMarketCap(){
                         } else if (value >= 1000) {
                             return value/1000 + " thou";
                         } else {
-                            return value;
+                            return Math.round(value * 10) / 10;
                         }
                     }
                 }
