@@ -292,7 +292,7 @@ function update_chart(){
     volumeChart.data = {
       labels: Object.keys(volume_sorted),
       datasets: [{
-          label: "Trading Volume " + volume_attr.split("_")[2].toUpperCase(),
+          label: "Trading Volume in " + volume_attr.split("_")[2].toUpperCase(),
           data: get_values(volume_sorted),
           backgroundColor: gradient_color(volume_sorted, theme_grad), //generate_colors(amounts_btc),
           borderColor: white, //generate_colors(amounts_btc),
@@ -516,7 +516,7 @@ function coinMarketCap(){
       data: {
           labels: Object.keys(currs),
           datasets: [{
-              label: "Trading Volume",
+              label: "Trading Volume ",
               data: get_values(eval("volume_" + volume_curr)),
               backgroundColor: gradient_color(eval("volume_" + volume_curr), theme_grad), //generate_colors(amounts_btc),
               borderColor: white, //generate_colors(amounts_btc),
