@@ -209,6 +209,7 @@ function addToken(token, amount){
             coinMarketCap();			
             // Initialize the counter
             countdown = ref_freq;
+            clearInterval(countdownTimerID);
             countdownTimerID = setInterval(countMeDown, 1000);
         }
         currs[token] = amount;
