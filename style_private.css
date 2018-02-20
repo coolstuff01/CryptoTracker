@@ -1,0 +1,36 @@
+/* MISC STYLES */
+.control_ttl{
+	margin: 5px 0px 0px 0px !important;
+}
+
+
+
+.btn-default.green_but {
+
+    background-color: #1abb9c !important;
+	border-color: #ccc !ccc;
+	color:white;
+	font-weight:bold;
+}
+
+
+.btn-default.red_but {
+
+    background-color: #e74c3c !important;
+	border-color: #ccc !important;
+	color:white;
+	font-weight:bold;
+}
+.btn-default.blue_but {
+
+    background-color: #2a3f54 !important;
+	border-color: #ccc !important;
+	color:white;
+	font-weight:bold;
+}
+
+
+.btn-default.blue_but.active, .btn-default.blue_but:active, .open>.dropdown-toggle.btn-default.blue_but{
+	color:lightgrey !important;
+	
+}

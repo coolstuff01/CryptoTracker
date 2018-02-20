@@ -1,0 +1,53 @@
+#main{
+  text-align: center;
+}
+
+#graph{
+/*  margin: auto; */
+/*  width: 60%; */
+/*  max-width: 550px; */
+  padding: 10px;
+  clear: left;
+}
+
+#Top_Part{
+  margin: auto;
+  width: 70%;
+  padding: 10px;
+  text-align: center;
+}
+
+#Table_Part{
+  margin: auto;
+  width: 70%;
+  padding: 10px;
+  clear: left;
+}
+
+.stats_table{
+  
+}
+
+.totals{
+  text-align: center;
+  width: 33%;
+  float: left;
+}
+
+.values{
+  text-align: center;
+  width: 14.28%;
+  float: left;
+}
+
+.changes{
+  text-align: center;
+  width: 14.28%;
+  float: left;
+}
+
+.add_remove{
+  text-align: center;
+  width: 20%;
+  float: left;
+}

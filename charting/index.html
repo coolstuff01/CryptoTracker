@@ -1,0 +1,184 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Charter!!!</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="manifest" href="site.webmanifest">
+
+		<!-- BS and JQuery-->
+		<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+		
+		<!-- BS Select-->
+		<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.3/css/bootstrap-select.min.css" />
+		<script src='//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.3/js/bootstrap-select.min.js'></script>
+
+		
+		<!-- JQuery UI-->
+		<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+		<script src='http://code.jquery.com/ui/1.12.1/jquery-ui.js'></script>
+
+		<!-- font awesome -->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+		
+		
+		<!-- Charting -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
+		
+		<!-- LOCAL REFERENCES: vendor-->
+		<link rel="stylesheet" href="vendor/Ajax-Bootstrap-Select-master/css/ajax-bootstrap-select.css"/>
+		<script type="text/javascript" src="vendor/Ajax-Bootstrap-Select-master/js/ajax-bootstrap-select.js"></script>			
+		<script src="vendor/modernizr/modernizr-3.5.0.min.js"></script>		
+
+		<!-- LOCAL REFERENCES:  helpers-->
+		<script src="js/main.js"></script>
+		<script src="js/live_search.js"></script>
+		<link rel="stylesheet" href="css/normalize.css">
+		<link rel="stylesheet" href="css/main.css">
+		<link rel="stylesheet" href="css/design.css">	
+
+<script>
+
+
+$(document).ready(function(){
+		
+	live_search(
+		'token_name',
+		"#token_control > div:nth-child(1) > div > div > div.bs-searchbox > input",
+		'list_cryptos_020618.json',
+		'name',
+		'symbol',
+		20
+	)	
+	
+	
+})
+
+
+</script>
+
+
+		
+    </head>
+    <body>
+        
+        <!-- This section defines the top part of the page where everything except graphs is located-->
+        <div id="Top_Part">
+          <p id="Countdown"></p></br>
+          <div id="token_control">
+            <div class="add_remove">
+                Token name: 				
+				<select id='token_name' name="token_name" class="selectpicker with-ajax" data-live-search="true" data-actions-box="false" ></select>
+            </div> 
+            <div class="add_remove">
+                Amount: <input type="number" min="0" id="token_amount" name="token_amount"><br><br><br>
+            </div>
+            <div class="add_remove">
+                <input type="submit" value="Add" onclick="chart_actions('add')">
+                <input type="submit" value="Remove" onclick="chart_actions('remove')">
+            </div>
+            <div class="add_remove">
+                <select onchange="change_base_curr(this.value)">
+                    <option value="AUD">AUD</option>
+                    <option value="BRL">BRL</option>
+                    <option value="BTC" selected="selected">BTC</option>
+                    <option value="CAD">CAD</option>
+                    <option value="CHF">CHF</option>
+                    <option value="CLP">CLP</option>
+                    <option value="CNY">CNY</option>
+                    <option value="CZK">CZK</option>
+                    <option value="DKK">DKK</option>
+                    <option value="EUR">EUR</option>
+                    <option value="GBP">GBP</option>
+                    <option value="HKD">HKD</option>
+                    <option value="HUF">HUF</option>
+                    <option value="IDR">IDR</option>
+                    <option value="ILS">ILS</option>
+                    <option value="INR">INR</option>
+                    <option value="JPY">JPY</option>
+                    <option value="KRW">KRW</option>
+                    <option value="MXN">MXN</option>
+                    <option value="MYR">MYR</option>
+                    <option value="NOK">NOK</option>
+                    <option value="NZD">NZD</option>
+                    <option value="PHP">PHP</option>
+                    <option value="PKR">PKR</option>
+                    <option value="PLN">PLN</option>
+                    <option value="RUB">RUB</option>
+                    <option value="SEK">SEK</option>
+                    <option value="SGD">SGD</option>
+                    <option value="THB">THB</option>
+                    <option value="TRY">TRY</option>
+                    <option value="TWD">TWD</option>
+                    <option value="USD">USD</option>
+                </select>    
+            </div>
+            <div class="add_remove">
+                <select onchange="theme_colour(this)">
+                    <option value="warm_flame">Warm Flame</option>
+                    <option value="juicy_peach">Juicy Peach</option>
+                    <option value="lady_lips">Lady Lips</option>
+                    <option value="winter_neva">Winter Neva</option>
+                    <option value="heavy_rain">Heavy Rain</option>
+                    <option value="cloudy_knoxville">Cloudy Knoxville</option>
+                    <option value="saint_petersberg">Saint Petersberg</option>
+                    <option value="plum_plate">Plum Plate</option>
+                    <option value="everlasting_sky">Everlasting Sky</option>
+                    <option value="happy_fisher">Happy Fisher</option>
+                    <option value="fly_high">Fly High</option>
+                    <option value="fresh_milk">Fresh Milk</option>
+                    <option value="great_whale">Great Whale</option>
+                    <option value="aqua_splash">Aqua Splash</option>
+                    <option value="clean_mirror">Clean Mirror</option>
+                    <option value="premium_dark">Premium Dark</option>
+                    <option value="cochiti_lake">Cochiti Lake</option>
+                    <option value="passionate_bed">Passionate Bed</option>
+                    <option value="mountain_rock">Mountain Rock</option>
+                    <option value="desert_hump">Desert Hump</option>
+                    <option value="eternal_constance">Eternal Constance</option>
+                    <option value="healthy_water">Healthy Water</option>
+                    <option value="vicious_stance">Vicious Stance</option>
+                    <option value="nega">Nega</option>
+                    <option value="night_sky">Night Sky</option>
+                    <option value="gentle_care">Gentle Care</option>
+                    <option value="morning_salad" selected="selected">Morning Salad</option>
+                </select>    
+            </div>
+          </div>
+        </div>
+    
+        <!-- This section defines stats tables section of the page-->
+        <div id="Table_Part">
+            <center>
+                <table id="stats_table">
+                    <tr>
+                        <th>Token</th>
+                        <th>Quantity</th>
+                        <th>Total in BTC</th>
+                    </tr>
+                    <tr>
+                        <td>test</td>
+                        <td>3</td>
+                        <td>4</td>
+                    </tr>        
+                </table>
+            </center>
+        </div>
+          
+        <!-- This section defines graph section of the page-->
+        <div id="graph">
+            <canvas id="barChart" height="500px" width="500px"></canvas></br></br></br>
+            <canvas id="pieChart" height="500px" width="500px"></canvas>
+        </div>
+        
+        
+        
+    </body>
+</html>

@@ -1,0 +1,262 @@
+<?php 
+	
+require("common.php");
+session_start(); 
+$g_admin_logged=false;
+
+if(empty($_SESSION['user'])){ 	
+    $g_your_email="";
+}else{
+	$g_your_email="Your e-mail: ".htmlentities($_SESSION['user']['email'], ENT_QUOTES, 'UTF-8');
+	
+	if($_SESSION['user']['email']=='kirill.savine@gmail.com' | $_SESSION['user']['email']=='nsitnikov1@gmail.com'){
+		$g_admin_logged=true;		
+	}
+	
+}
+
+	// update tockenlist if it is older than 24 hrs
+		
+	include('save_tocken_list.php');
+	
+	
+?> 
+
+
+
+
+
+
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Charter!!!</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="manifest" href="site.webmanifest">
+
+		<!-- BS and JQuery-->
+		<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+		
+		<!-- BS Select-->
+		<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.3/css/bootstrap-select.min.css" />
+		<script src='//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.3/js/bootstrap-select.min.js'></script>
+
+		
+		<!-- JQuery UI-->
+		<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+		<script src='http://code.jquery.com/ui/1.12.1/jquery-ui.js'></script>
+
+		<!-- font awesome -->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+		
+		
+		<!-- Charting -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
+		
+		<!-- LOCAL REFERENCES: vendor-->
+		<link rel="stylesheet" href="charting/vendor/Ajax-Bootstrap-Select-master/css/ajax-bootstrap-select.css"/>
+		<script type="text/javascript" src="charting/vendor/Ajax-Bootstrap-Select-master/js/ajax-bootstrap-select.js"></script>			
+		<script src="charting/vendor/modernizr/modernizr-3.5.0.min.js"></script>		
+
+		<!-- LOCAL REFERENCES:  charting -->
+		<script src="charting/js/main.js"></script>		
+		<link rel="stylesheet" href="charting/css/normalize.css">
+		<link rel="stylesheet" href="charting/css/main.css">
+		<link rel="stylesheet" href="charting/css/design.css">	
+
+		<!-- LOCAL REFERENCES:  business logic -->
+		<link rel="stylesheet" href="style_private.css">
+		<script src="helpers.js"></script>		
+	
+	
+
+		
+<script>
+
+
+$(document).ready(function(){
+		
+	$("#left_menu").hide();
+	$("#main_content").css("margin-left","0px");	
+	$("#menu_bar").css("margin-left","0px");	
+		
+	
+	$("#loading_id").hide();
+	$("#loader").hide();
+	$("#register").hide();
+	$("#edit_account").hide();
+
+	$("#logout").hide();
+	$("#login").hide();
+	
+	if("<?php echo $g_your_email; ?>"==""){$("#login").show();$("#register").show();}else{$("#logout").show();$("#edit_account").show();}
+	
+	
+	setTimeout(function(){$("#wrapper").toggleClass("toggled","slow")}, 250);  		
+
+	$("#token_amount").spinner()
+	$("#chart_perc_timefr").selectpicker()	
+	$("#chart_base_cur").selectpicker()
+	$("#chart_theme").selectpicker()
+	
+
+	ajax_live_search(
+		i_target_id='token_name',
+		i_selector="#show_dates > div > div.btn-group.bootstrap-select.with-ajax.open > div > div.bs-searchbox > input",
+		i_json_source='tocken_list.json',
+		i_name_name='name',
+		i_id_name='symbol',
+		i_additional_search_cols=['id'],
+		i_limit=20
+	)	
+
+	$("#menu-toggle").click(function(e) {
+		e.preventDefault();
+		toggle_menu();
+	});
+		
+	
+	
+})
+
+
+
+</script>
+
+<style>
+
+.bootstrap-select.btn-group .dropdown-menu li a:hover {
+	color: black !important; 
+}
+
+</style>
+
+		
+    </head>
+    <body>
+
+	<div id="wrapper" class="toggled">
+		<!-- Sidebar -->
+		<div id="sidebar-wrapper">
+			<ul class="sidebar-nav" id="show_dates">
+				<div id='menu_well' class="well" style="background-color: rgba(245, 245, 245, 0);border-style: none;">
+					<h1 style='color:grey'>Crypto Charter</h1><hr>
+					<h4>Manage Account</h4>		
+					<p>
+					
+					<?php echo $g_your_email; ?><br>
+					
+					</p>
+					
+					<br> 
+					<a class="btn btn-default menu_but" href="edit_account.php" id='edit_account'>Edit Account</a><br /> 				
+					<a class="btn btn-default menu_but" href="logout.php" id='logout'>Logout</a>
+					<a class="btn btn-default menu_but" href="login.php" id='login'>Login</a><br /> 
+					<a class="btn btn-default menu_but" href="register.php" id='register'>Register</a>
+					<?php	
+					if($g_admin_logged){
+						echo '<a class="btn btn-default menu_but" href="memberlist.php">Who already registered</a> <small>';
+						echo '<p>(You can see this link because you are logged in as admin</small>)<br></p>';
+					}
+					?>
+					<hr> 
+					<h4>Manage Dashboard</h4>		
+					
+					
+					<p>Token name:</p> 				
+					<select id='token_name' name="token_name" class="selectpicker with-ajax" data-live-search="true" data-actions-box="false" ></select>					
+					<br>
+					<br>
+					<p>Amount: </p>
+					<input style="width:100%" type="number" min="0" id="token_amount" name="token_amount" ><br><br>
+					<a class="btn btn-default menu_but_50"  href='#' onclick="chart_actions('add')">Add</a>
+					<a class="btn btn-default menu_but_50" href='#' onclick="chart_actions('remove')">Remove</a>
+					<br>
+					<p>Value Change Timeframe:</p>
+					<select id='chart_perc_timefr' onchange="change_perc_timefr(this.value)"><?php include('parts/perc_timefr.php'); ?></select> <br>
+					<p>Base Currency:</p>
+					<select id='chart_base_cur' onchange="change_base_curr(this.value)"><?php include('parts/base_cur.php'); ?></select> <br>
+					<p>Theme:</p>
+					<select id='chart_theme' onchange="theme_colour(this)"><?php include('parts/themes.php'); ?></select> <br>
+						
+
+					
+					<div id='contact_info' style='color:white;font-family: "Arial Narrow","Tahoma","Lucida Grande"; position: fixed;bottom: 20px;left: 0px;'>For support contact: <u><a style='color:white;' href="mailto:cryptuxa@gmail.com?Subject=Cryptuxa%20Dashboard" target="_top">cryptuxa@gmail.com</a></u></div>
+				
+				</div>
+			</ul>
+			
+				
+		</div>
+
+
+	   <!-- Page Content -->
+
+	<div id="page-content-wrapper" style='height:100%'>
+		<a href="#menu-toggle" class="btn btn-info" id="menu-toggle" style="float:left;">Toggle Menu</a>
+		
+		
+		
+
+			<!-- This section defines the top part of the page where everything except graphs is located-->
+			<div id="Top_Part">
+			  <p id="Countdown"></p></br>
+			  <div id="token_control">
+
+			
+			  </div>
+			</div>
+
+			  
+			<!-- This section defines graph section of the page-->
+			
+		<div class="well">
+			<div class="row" id='graph'>
+				<div class="col-sm-6" style='border-radius:10px;'>			
+					<canvas id="valueChart" height="100%" width="100%"></canvas>
+				</div>
+				<div class="col-sm-6" style='border-radius:10px;'>			
+					<canvas id="percChangeChart" height="100%" width="100%"></canvas>
+				</div>
+				<div class="col-sm-6" style='border-radius:10px;'>			
+					<canvas id="pieChart" height="100%" width="100%"></canvas>
+				</div>
+			</div>		
+		</div>
+			
+					
+		<!-- This section defines stats table section of the page-->
+			<div id="Table_Part">
+				<center>
+					<table id="kpis_table">
+					    
+					</table>
+				</center></br></br></br></br>
+				<center>
+					<table id="stats_table">
+					    
+					</table>
+				</center>
+			</div>
+		
+		
+	
+		<!-- /#page-content-wrapper -->	
+
+	</div>
+	<!-- /#wrapper -->	
+
+
+
+		
+        
+    </body>
+</html>
