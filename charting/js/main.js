@@ -11,7 +11,6 @@ var logic_currency = "btc"; // base currency for underlying logic
 var response = []; // variable to store response from coinmarketcap
 var valid_tks = []; // valid tokens
 var currs = {}; // list for all currencies in portfolio
-var jjj;
 
 var amounts_btc = {}; // amounts of all currencies in bitcoin
 var amounts_loc = {}; // amounts of all currencies in local currency
