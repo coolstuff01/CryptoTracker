@@ -46,6 +46,8 @@ const precision = 10000;
 
 var stats_table; // set the table variable. 
 
+var charts_first_call = 0; // tells whether the charts have ever been drawn
+
 
 // COLOURS
 var white = "rgba(255, 255, 255, 1)";
@@ -206,7 +208,10 @@ function addToken(token, amount){
     } else if (!(token in currs)){
         // Check if charts have not been drawn yet
         if ($.isEmptyObject(currs)){
-            coinMarketCap();			
+            if (charts_first_call === 0){
+                charts_first_call = 1;
+                coinMarketCap();
+            }	
             // Initialize the counter
             countdown = ref_freq;
             clearInterval(countdownTimerID);
