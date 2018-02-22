@@ -10,6 +10,7 @@ var volume_attr = "24h_volume_" + "usd"; // base currency for 24h volume is usd
 var logic_currency = "btc"; // base currency for underlying logic
 var response = []; // variable to store response from coinmarketcap
 var valid_tks = []; // valid tokens
+
 var currs = {}; // list for all currencies in portfolio
 
 var amounts_btc = {}; // amounts of all currencies in bitcoin

@@ -167,3 +167,104 @@ inp_selector="#menu_bar > div > nav > ul.nav.navbar-nav.navbar-left > li:nth-chi
 
 
 */
+
+
+function send_protfolio(x_json,usr){
+	
+	if(usr==0){
+		console.log("user not logged, did not log portfolio")
+	}else{
+		
+		data=encodeURIComponent(JSON.stringify(x_json))
+		//out=$.get("send_port.php?t=1&v="+data+"&u="+usr)
+		
+
+		$.ajax({
+			url: "send_port.php",
+			method: 'GET',
+			cache: false,
+	//		dataType : "html",
+//			async: true,			
+			data: {t: 1, v: data, u:usr},
+			success: function(out) {
+				out=out.replace(/\s/g,'');
+				if(out!="succ"){
+					console.log("user '"+usr+"' logged, but did not log portfolio: "+out)
+				}else{					
+					console.log("user '"+usr+"' logged: "+data)
+				}
+			}
+		})
+			
+			
+		
+	}
+}
+
+
+function read_protfolio(usr){
+	
+	//out
+		
+	if(usr==0){
+		console.log("user not logged, no porfolio to pull")
+		return("NA")
+	}else{		
+		
+		out=$.ajax({
+			url: "send_port.php",
+			method: 'GET',
+			cache: false,
+	//		dataType : "html",
+			async: false,			
+			data: {t: 2, v:"dumm", u:usr},
+			success: function(x) {
+				return(x)
+			}
+		})
+		
+		out=out.responseText;
+		out=out.replace(/\s/g,'');
+		if(out.substring(0,4)=="succ"){
+			port=out.substring(4);
+			if(port==""){
+				console.log("user '"+usr+"' - no log data found")
+				res="NA";
+				return(res)
+			}
+			console.log("user '"+usr+"' - log data found: "+port)
+			res=JSON.parse(decodeURIComponent(port));
+			return(res)
+		}else{					
+			console.log("error: "+out)
+			res="NA";
+			return(res)
+		}		
+	}		
+	
+}
+
+
+function test(usr) {
+    res=read_protfolio(usr,function(d) {
+        //processing the data
+        console.log(d)
+    });
+	return(res)
+}
+
+
+function on_add(){
+	chart_actions('add'); // add the currency
+	$('#main_content_span').show();	// show widgets (ignored if already shown)
+	make_up_charts($('.x_content').css('width'),'250px'); // ensure charts are adapted to widget size (in case if screen size changed), current CSS has a constant widget height of 320px, thus making chart height also constant at 250px
+	send_protfolio(currs,g_u); // send new currency mix to the DB (ignored if user is not logged)
+			
+}
+
+
+function on_rem(){
+	chart_actions('remove') // remove 
+	send_protfolio(currs,g_u); // send new currency mix to the DB (ignored if user is not logged)
+			
+}

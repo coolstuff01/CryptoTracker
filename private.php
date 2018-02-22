@@ -6,6 +6,7 @@ $g_admin_logged=false;
 
 if(empty($_SESSION['user'])){ 	
     $g_your_email="Welcome!";
+	$usr_id=0;
 }else{
 	$g_your_email="Your e-mail: ".htmlentities($_SESSION['user']['email'], ENT_QUOTES, 'UTF-8');
 	
@@ -13,6 +14,7 @@ if(empty($_SESSION['user'])){
 		$g_admin_logged=true;		
 	}
 	
+	$usr_id=$_SESSION['user']['id'];	
 }
 
 	// update tockenlist if it is older than 24 hrs
@@ -119,16 +121,25 @@ if(empty($_SESSION['user'])){
 	<script src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>		
 	
 	
-	<!-- LOCAL REFERENCES:  charting -->
+	<!-- global variables -->
+	
+	
+	<script>
+	var g_u=<?php echo $usr_id; ?>;
+	</script>
+	
+	
+	<!-- LOCAL REFERENCES -->
+	<script src="helpers.js"></script>		
 	<script src="charting/js/main.js"></script>		
 	<link rel="stylesheet" href="charting/css/normalize.css">
 	<link rel="stylesheet" href="charting/css/main.css">
 	<link rel="stylesheet" href="charting/css/design.css">	
 
-	<!-- LOCAL REFERENCES:  business logic -->
+
 	<link rel="stylesheet" href="style_private.css">
 	<link rel="stylesheet" href="vendor/loader1/loader.css">
-	<script src="helpers.js"></script>		
+	
 
 	
 	
@@ -139,14 +150,15 @@ if(empty($_SESSION['user'])){
 <script>
 
 
+
 $(document).ready(function(){
 		
 
-// Progressbar
-if ($(".progress .progress-bar")[0]) {
-    $('.progress .progress-bar').progressbar();
-}
-// /Progressbar
+	// Progressbar
+	if ($(".progress .progress-bar")[0]) {
+		$('.progress .progress-bar').progressbar();
+	}
+	// /Progressbar
 
 
 	// NProgress
@@ -207,6 +219,20 @@ if ($(".progress .progress-bar")[0]) {
 
 	// hide charts 
 	$('#main_content_span').hide();
+	
+	
+
+	port=read_protfolio(g_u);
+	if(port=="NA"){
+		console.log("no past profolio logs found for user "+g_u)
+	}else{
+		currs=port;	
+		$('#main_content_span').show();	// show widgets (ignored if already shown)		
+		populate_val_dicts()
+		coinMarketCap()		
+		make_up_charts($('.x_content').css('width'),'250px'); // ensure charts are adapted to widget size (in case if screen size changed), current CSS has a constant widget height of 320px, thus making chart height also constant at 250px		
+		console.log("found profolio logs for user "+g_u)		
+	}	
 	
 })
 
@@ -440,9 +466,9 @@ $(document).ready(function() {
 							</div>
 							<div class="col-sm-2">
 								<p class='control_ttl'>Action:</p> 
-								<a class="btn btn-default green_but"  href='#' onclick="chart_actions('add');$('#main_content_span').show();make_up_charts($('.x_content').css('width'),'250px')"><span class=" fa fa-plus"></span>&nbsp;Add</a>
+								<a class="btn btn-default green_but"  href='#' onclick="on_add();"><span class=" fa fa-plus"></span>&nbsp;Add</a>
 								<p class='control_ttl'>&nbsp;</p> 
-								<a class="btn btn-default red_but" href='#' onclick="chart_actions('remove')"><span class=" fa fa-remove"></span>&nbsp;Remove</a>									
+								<a class="btn btn-default red_but" href='#' onclick="on_rem();"><span class=" fa fa-remove"></span>&nbsp;Remove</a>									
 							</div>
 
 							<div class="col-sm-3">
