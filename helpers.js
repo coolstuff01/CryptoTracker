@@ -130,43 +130,24 @@ function make_up_charts(w,h){
 
 
 
-/*
-$(document).ready(function() {
-var inp_selector;
-inp_selector="#menu_bar > div > nav > ul.nav.navbar-nav.navbar-left > li:nth-child(1) > div.btn-group.bootstrap-select.open > div > div > input";
-			  
-	$(document).on('input', inp_selector, function() {
-		cur_search=$(inp_selector).val().toLowerCase();
+function render_template(args,path_to_templ,target_id,callback,append){
+	
+	callback = callback || function(){console.log("rendering "+path_to_templ+": no callback")};
+	append = append || false;
+	
+	var r = $.Deferred();
 
-		var array=[];
-		for (i = 0; i < test_opts.length; i++) {	
-			
-			var cur_search_list=[];	
-			cur_search_list.push(test_opts[i]['v'].toLowerCase());
-
-			
-			if(in_array_partial(cur_search,cur_search_list)){
-				array.push($.extend(true, test_opts[i], {
-					text : test_opts[i]['v'],
-					value: test_opts[i]['v'], 
-					data : {
-						subtext: test_opts[i]['v']
-					}
-				}));				
-			}
-			
+	$.get({url: path_to_templ,cache: false}).then(function(x) {
+		if(!append){$("#"+target_id).empty()};
+		$.tmpl(x, args).appendTo("#"+target_id);
+		callback()
 		
-		//loadSelectItems($("#token_name_test"),test_opts)
-		};
-		//alert(array)
 	});
 
-});
+	return r;		
+}		
 
 
-
-
-*/
 
 
 function send_protfolio(x_json,usr){

@@ -61,8 +61,8 @@ if(empty($_SESSION['user'])){
 	<script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.templates/beta1/jquery.tmpl.min.js"></script>
 	
 	<!-- JQuery UI-->
-	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-	<script src='http://code.jquery.com/ui/1.12.1/jquery-ui.js'></script>
+	<link rel="stylesheet" href="vendor/jquery-ui/jquery-ui.min.css">
+	<script src='vendor/jquery-ui/jquery-ui.min.js'></script>
 
 	
     <!-- Bootstrap -->
@@ -154,14 +154,14 @@ if(empty($_SESSION['user'])){
 $(document).ready(function(){
 		
 
-	// Progressbar
+	// Progressbar START
 	if ($(".progress .progress-bar")[0]) {
 		$('.progress .progress-bar').progressbar();
 	}
-	// /Progressbar
+	// /Progressbar END
 
 
-	// NProgress
+	// NProgress START
 	if (typeof NProgress != 'undefined') {
 		$(document).ready(function () {
 			NProgress.start();
@@ -171,7 +171,7 @@ $(document).ready(function(){
 			NProgress.done();
 		});
 	}
-
+	// NProgress END
 		
 	
 		
@@ -179,7 +179,7 @@ $(document).ready(function(){
 	$("#left_menu").hide();
 	$("#main_content").css("margin-left","0px");	
 	$("#menu_bar").css("margin-left","0px");	
-	loadSelectItems($("#token_name"),response)		
+	loadSelectItems($("#token_name"),response.slice(0,9))		 // load 10 most popular tokens 
 	
 	$("#loading_id").hide();
 	$("#loader").hide();
@@ -193,35 +193,67 @@ $(document).ready(function(){
 	
 	
 	setTimeout(function(){$("#wrapper").toggleClass("toggled","slow")}, 250);  		
-
+	
 	$("#token_amount").spinner()
 	$("#chart_perc_timefr").selectpicker()	
 	$("#chart_base_cur").selectpicker()
 	$("#chart_theme").selectpicker()
 	
+	
+	
+	/* handler for token search START */
+	var inp_selector;
+	inp_selector="#menu_bar > div > nav > div > div > div:nth-child(1) > div > div > div > input";	  
+			
+	$(document).on('click', "#menu_bar > div > nav > div > div > div:nth-child(1) > div > button", function() {
+		$(inp_selector).attr("placeholder","Start typing token name")	
+	})
+	
+	$(document).on('input', inp_selector, function() {
+		cur_search=$(inp_selector).val().toLowerCase();
 
-	ajax_live_search(
-		i_target_id='token_name',
-		i_selector="#menu_bar > div > nav > ul.nav.navbar-nav.navbar-left > li:nth-child(1) > div > div > div.bs-searchbox > input",
-		i_json_source='tocken_list.json',
-		i_name_name='name',
-		i_id_name='symbol',
-		i_additional_search_cols=['id'],
-		i_limit=20
-	)	
+		var array=[];
+		for (i = 0; i < response.length; i++) {	
+			
+			var cur_search_list=[
+				response[i]['id'].toLowerCase(),
+				response[i]['name'].toLowerCase(),
+				response[i]['symbol'].toLowerCase()			
+			];	
+			/*
+			cur_search_list.push(response[i]['id'].toLowerCase());
+			cur_search_list.push(response[i]['name'].toLowerCase());
+			cur_search_list.push(response[i]['symbol'].toLowerCase());
+			*/
+			
+			if(in_array_partial(cur_search,cur_search_list)){
+				array.push(response[i])		
+				if(array.length>20){break}				
+			}
+					
+		};
+		//console.log(array)
+		loadSelectItems($("#token_name"),array)	
+		
+	});	
+	
+	/* handler for token search END */
+	
 
-	// make up menu
+	// make up menu START
 	$( "#token_name" ).parents('div').find(".btn-group").css("width","100%")
 	$( ".ui-spinner" ).css("width","100%");
 	$( ".btn.btn-default" ).css("margin-bottom","0px");
 	$( ".btn.btn-default" ).css("width","100%");
 	$( "#token_amount" ).css("height","25px");
-
-	// hide charts 
-	$('#main_content_span').hide();
+	// make up menu END
 	
 	
-
+	
+	$('#main_content_span').hide(); // hide charts 
+	
+	
+	/* Read portfolio from DB START */
 	port=read_protfolio(g_u);
 	if(port=="NA"){
 		console.log("no past profolio logs found for user "+g_u)
@@ -233,29 +265,13 @@ $(document).ready(function(){
 		make_up_charts($('.x_content').css('width'),'250px'); // ensure charts are adapted to widget size (in case if screen size changed), current CSS has a constant widget height of 320px, thus making chart height also constant at 250px		
 		console.log("found profolio logs for user "+g_u)		
 	}	
+	/* Read portfolio from DB END */
 	
 })
 
 
 
 
-	function render_template(args,path_to_templ,target_id,callback,append){
-		
-		callback = callback || function(){console.log("rendering "+path_to_templ+": no callback")};
-		append = append || false;
-		
-		var r = $.Deferred();
-	
-		$.get({url: path_to_templ,cache: false}).then(function(x) {
-			if(!append){$("#"+target_id).empty()};
-			$.tmpl(x, args).appendTo("#"+target_id);
-			callback()
-			
-		});
-
-		return r;		
-	}		
-	
 
 $(document).ready(function() {
 	
