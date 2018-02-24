@@ -1,7 +1,6 @@
 <?php 
-	
-require("common.php");
 session_start(); 
+require("common.php");
 $g_admin_logged=false;
 
 if(empty($_SESSION['user'])){ 	
@@ -260,10 +259,14 @@ $(document).ready(function(){
 	}else{
 		currs=port;	
 		$('#main_content_span').show();	// show widgets (ignored if already shown)		
-		populate_val_dicts()
-		coinMarketCap()		
+		populate_val_dicts(); // from main.js populate global ticker dictionary
+		coinMarketCap();		// draw charts
+    countdown = ref_freq;
+    clearInterval(countdownTimerID);
+    countdownTimerID = setInterval(countMeDown, 1000);
 		make_up_charts($('.x_content').css('width'),'250px'); // ensure charts are adapted to widget size (in case if screen size changed), current CSS has a constant widget height of 320px, thus making chart height also constant at 250px		
-		console.log("found profolio logs for user "+g_u)		
+		console.log("found profolio logs for user "+g_u);	
+
 	}	
 	/* Read portfolio from DB END */
 	

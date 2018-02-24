@@ -1,7 +1,6 @@
 <?php 
-
-    require("common.php"); 
-    session_start(); 		
+    session_start(); 
+    require("common.php"); 	
 	$message=""; 
 	
 	if(!empty($_GET['m'])){		
@@ -44,9 +43,9 @@
 
 			$check_password=$_POST['password'];
 			
-			echo $row['password'];
-			echo "<br>";
-			echo $check_password;
+			//echo $row['password'];
+			//echo "<br>";
+			//echo $check_password;
 			
             if($check_password === $row['password']){ 
                 $login_ok = true;				
@@ -65,19 +64,15 @@
 		}
          
         if($login_ok){ 
-			
             unset($row['password']); // remove sensitive info
             $_SESSION['user'] = $row;  // save logged user data to a session variable
-
             header("Location: private.php"); 
             die("redirecting"); 
         }else{ 
-            
             print($message); // dump the message on them
             $submitted_username = htmlentities($_POST['username'], ENT_QUOTES, 'UTF-8');  // fillout the username for their convenience
         } 
     } 
-     
 ?> 
 
 <!-- BS and JQuery-->
@@ -103,8 +98,3 @@
 		</form> 
 		<input type="submit" value="Register" class='login_button'  onclick='window.location.href="register.php"';/>
 	</div>
-
-
-
-
-

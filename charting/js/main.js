@@ -753,7 +753,6 @@ function setCellContents(table, rowIndex, colIndex, newContents, percent) {
 
 // Refresh counter decrement function
 function countMeDown(){
-    
     if(countdown === 0){
         clearInterval(countdownTimerID);
         response = pullCryptoData(cmc_url_active);
