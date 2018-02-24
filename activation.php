@@ -7,7 +7,7 @@ require_once(dirname(__FILE__) . "/common.php");
 
 
 
-// Now we perform a check for the email address, in order to ensure that it is unique. 
+// Now we perform a check for the email address, in order to ensure that it is unique. //
 $query = "UPDATE users SET active = 1 WHERE act = :act"; 
   
 $query_params = array(':act' => $x); 
