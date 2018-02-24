@@ -3,6 +3,10 @@ var countdownTimerID; // countdown instance
 const cmc_url = "https://api.coinmarketcap.com/v1/ticker/?start=0&limit=0&convert=XXXXX"; // coinmarketcap general url
 var cmc_url_active; // coinmarketcap specific url
 var url_completion_curr = "CAD"; // the currency for url
+var curr_sign_beg = "$"; // currency sign before
+var curr_sign_end = ""; // currency sign after
+var det_curr_sign_beg = "$"; //detailed currency sign before
+var det_curr_sign_end = ""; //detailed currency sign end
 var base_currency = "BTC"; // base currency for charts
 var price_attr = "price_" + base_currency.toLowerCase(); // price_ attribute defining which key-value pair from response gets called
 var market_cap_attr = "market_cap_" + "usd"; // base currency for market cap is usd
@@ -43,7 +47,7 @@ var num_tokens; // how many different tokens person owns
 var no_refresh = 0; // flag to avoid refresh
 const ref_freq = 60; // refresh frequency in seconds
 
-const precision = 10000;
+const precision = 100;
 
 var stats_table; // set the table variable. 
 
@@ -160,8 +164,208 @@ function curr_url (){
         url_completion_curr = base_currency;
         logic_currency = "loc";
     }
+
+    set_curr_sign();
     
     return cmc_url.replace("XXXXX", url_completion_curr);
+}
+
+// this function sets currency sign
+function set_curr_sign (){
+    switch (base_currency) {
+        case "AUD":
+            curr_sign_beg = "AU$";
+            curr_sign_end = "";
+            det_curr_sign_beg = curr_sign_beg;
+            det_curr_sign_end = curr_sign_end;
+            break;
+        case "BRL":
+            curr_sign_beg = "R$";
+            curr_sign_end = "";
+            det_curr_sign_beg = curr_sign_beg;
+            det_curr_sign_end = curr_sign_end;
+            break;
+        case "BTC":
+            curr_sign_beg = "C$";
+            curr_sign_end = "";
+            det_curr_sign_beg = "Ƀ";
+            det_curr_sign_end = "";
+            break;
+        case "USD":
+            curr_sign_beg = "C$";
+            curr_sign_end = "";
+            det_curr_sign_beg = "$";
+            det_curr_sign_end = "";
+            break;
+        case "CAD":
+            curr_sign_beg = "C$";
+            curr_sign_end = "";
+            det_curr_sign_beg = curr_sign_beg;
+            det_curr_sign_end = curr_sign_end;
+            break;
+        case "CHF":
+            curr_sign_beg = "";
+            curr_sign_end = " Fr.";
+            det_curr_sign_beg = curr_sign_beg;
+            det_curr_sign_end = curr_sign_end;
+            break;
+        case "CLP":
+            curr_sign_beg = "CH$";
+            curr_sign_end = "";
+            det_curr_sign_beg = curr_sign_beg;
+            det_curr_sign_end = curr_sign_end;
+            break;
+        case "CNY":
+            curr_sign_beg = "¥";
+            curr_sign_end = "";
+            det_curr_sign_beg = curr_sign_beg;
+            det_curr_sign_end = curr_sign_end;
+            break;
+        case "CZK":
+            curr_sign_beg = "";
+            curr_sign_end = " Kč";
+            det_curr_sign_beg = curr_sign_beg;
+            det_curr_sign_end = curr_sign_end;
+            break;
+        case "DKK":
+            curr_sign_beg = "";
+            curr_sign_end = " kr";
+            det_curr_sign_beg = curr_sign_beg;
+            det_curr_sign_end = curr_sign_end;
+            break;
+        case "EUR":
+            curr_sign_beg = "€";
+            curr_sign_end = "";
+            det_curr_sign_beg = curr_sign_beg;
+            det_curr_sign_end = curr_sign_end;
+            break;
+        case "GBP":
+            curr_sign_beg = "£";
+            curr_sign_end = "";
+            det_curr_sign_beg = curr_sign_beg;
+            det_curr_sign_end = curr_sign_end;
+            break;
+        case "HKD":
+            curr_sign_beg = "HK$";
+            curr_sign_end = "";
+            det_curr_sign_beg = curr_sign_beg;
+            det_curr_sign_end = curr_sign_end;
+            break;
+        case "HUF":
+            curr_sign_beg = "";
+            curr_sign_end = " Ft";
+            det_curr_sign_beg = curr_sign_beg;
+            det_curr_sign_end = curr_sign_end;
+            break;
+        case "IDR":
+            curr_sign_beg = " Rp";
+            curr_sign_end = "";
+            det_curr_sign_beg = curr_sign_beg;
+            det_curr_sign_end = curr_sign_end;
+            break;
+        case "ILS":
+            curr_sign_beg = "₪";
+            curr_sign_end = "";
+            det_curr_sign_beg = curr_sign_beg;
+            det_curr_sign_end = curr_sign_end;
+            break;
+        case "INR":
+            curr_sign_beg = "₹";
+            curr_sign_end = "";
+            det_curr_sign_beg = curr_sign_beg;
+            det_curr_sign_end = curr_sign_end;
+            break;
+        case "JPY":
+            curr_sign_beg = "¥";
+            curr_sign_end = "";
+            det_curr_sign_beg = curr_sign_beg;
+            det_curr_sign_end = curr_sign_end;
+            break;
+        case "KRW":
+            curr_sign_beg = "₩";
+            curr_sign_end = "";
+            det_curr_sign_beg = curr_sign_beg;
+            det_curr_sign_end = curr_sign_end;
+            break;
+        case "MXN":
+            curr_sign_beg = "M$";
+            curr_sign_end = "";
+            det_curr_sign_beg = curr_sign_beg;
+            det_curr_sign_end = curr_sign_end;
+            break;
+        case "MYR":
+            curr_sign_beg = "RM";
+            curr_sign_end = "";
+            det_curr_sign_beg = curr_sign_beg;
+            det_curr_sign_end = curr_sign_end;
+            break;
+        case "NOK":
+            curr_sign_beg = "";
+            curr_sign_end = " kr";
+            det_curr_sign_beg = curr_sign_beg;
+            det_curr_sign_end = curr_sign_end;
+            break;
+        case "NZD":
+            curr_sign_beg = "NZ$";
+            curr_sign_end = "";
+            det_curr_sign_beg = curr_sign_beg;
+            det_curr_sign_end = curr_sign_end;
+            break;
+        case "PHP":
+            curr_sign_beg = "₱";
+            curr_sign_end = "";
+            det_curr_sign_beg = curr_sign_beg;
+            det_curr_sign_end = curr_sign_end;
+            break;
+        case "PKR":
+            curr_sign_beg = "Rs. ";
+            curr_sign_end = "";
+            det_curr_sign_beg = curr_sign_beg;
+            det_curr_sign_end = curr_sign_end;
+            break;
+        case "PLN":
+            curr_sign_beg = "";
+            curr_sign_end = " zł";
+            det_curr_sign_beg = curr_sign_beg;
+            det_curr_sign_end = curr_sign_end;
+            break;
+        case "RUB":
+            curr_sign_beg = "";
+            curr_sign_end = " руб";
+            det_curr_sign_beg = curr_sign_beg;
+            det_curr_sign_end = curr_sign_end;
+            break;
+        case "SEK":
+            curr_sign_beg = "";
+            curr_sign_end = " kr";
+            det_curr_sign_beg = curr_sign_beg;
+            det_curr_sign_end = curr_sign_end;
+            break;
+        case "SGD":
+            curr_sign_beg = "S$";
+            curr_sign_end = "";
+            det_curr_sign_beg = curr_sign_beg;
+            det_curr_sign_end = curr_sign_end;
+            break;
+        case "THB":
+            curr_sign_beg = "฿";
+            curr_sign_end = "";
+            det_curr_sign_beg = curr_sign_beg;
+            det_curr_sign_end = curr_sign_end;
+            break;
+        case "TRY":
+            curr_sign_beg = "₺";
+            curr_sign_end = "";
+            det_curr_sign_beg = curr_sign_beg;
+            det_curr_sign_end = curr_sign_end;
+            break;
+        case "TWD":
+            curr_sign_beg = "NT$";
+            curr_sign_end = "";
+            det_curr_sign_beg = curr_sign_beg;
+            det_curr_sign_end = curr_sign_end;
+            break;
+    }
 }
 
 // API call to pull crypto data
@@ -391,19 +595,19 @@ function populate_val_dicts () {
                 total_btc += currs[key] * response[item].price_btc;
                 total_usd += currs[key] * response[item].price_usd;
                 total_loc += currs[key] * response[item]["price_" + url_completion_curr.toLowerCase()];
-
+                
                 stats_table.innerHTML += "<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>";
                 setCellContents(stats_table, num_tokens, 0, num_tokens, 0);
                 setCellContents(stats_table, num_tokens, 1, key, 0);
                 setCellContents(stats_table, num_tokens, 2, (Math.round(currs[key] * precision) / precision).toLocaleString(), 0);
-                setCellContents(stats_table, num_tokens, 3, response[item][price_attr], 0);
-                setCellContents(stats_table, num_tokens, 4, (Math.round(currs[key] * response[item][price_attr] * 100) / 100).toLocaleString(), 0);
+                setCellContents(stats_table, num_tokens, 3, det_curr_sign_beg + parseFloat(response[item][price_attr]).toLocaleString() + det_curr_sign_end, 0);
+                setCellContents(stats_table, num_tokens, 4, det_curr_sign_beg + (Math.round(currs[key] * response[item][price_attr] * 100) / 100).toLocaleString() + det_curr_sign_end, 0);
                 setCellContents(stats_table, num_tokens, 5, response[item].percent_change_1h, 1);
                 setCellContents(stats_table, num_tokens, 6, response[item].percent_change_24h, 1);
                 setCellContents(stats_table, num_tokens, 7, response[item].percent_change_7d, 1);
                 setCellContents(stats_table, num_tokens, 8, response[item].rank, 0);
-                setCellContents(stats_table, num_tokens, 9, Math.round(response[item][market_cap_attr]).toLocaleString(), 0);
-                setCellContents(stats_table, num_tokens, 10, Math.round(response[item][volume_attr]).toLocaleString(), 0);
+                setCellContents(stats_table, num_tokens, 9, det_curr_sign_beg + Math.round(response[item][market_cap_attr]).toLocaleString() + det_curr_sign_end, 0);
+                setCellContents(stats_table, num_tokens, 10, det_curr_sign_beg + Math.round(response[item][volume_attr]).toLocaleString() + det_curr_sign_end, 0);
             }
         }
     }
@@ -429,12 +633,12 @@ function populate_val_dicts () {
 	
 	render_template(
 		{ 
-			"i_val_1" : (Math.round(total_btc * precision) / precision).toLocaleString(),
-			"i_val_2" : "$" + (Math.round(total_usd * 100) / 100).toLocaleString(),
-			"i_val_3" : (Math.round(total_loc * 100) / 100).toLocaleString(),
-			"i_val_4" :  Math.round(total_change_1h * 100) / 100+"%",
-			"i_val_5" :  Math.round(total_change_24h * 100) / 100+"%",
-			"i_val_6" :  Math.round(total_change_7d * 100) / 100+"%",
+			"i_val_1" : "Ƀ" + shorten_value(total_btc),
+			"i_val_2" : "$" + shorten_value(total_usd),
+			"i_val_3" : curr_sign_beg + shorten_value(total_loc) + curr_sign_end,
+			"i_val_4" : Math.round(total_change_1h * 100) / 100 + "%",
+			"i_val_5" : Math.round(total_change_24h * 100) / 100 + "%",
+			"i_val_6" : Math.round(total_change_7d * 100) / 100 + "%",
 			"i_val_4_c": total_change_1h_c,
 			"i_val_5_c": total_change_24h_c,
 			"i_val_6_c": total_change_7d_c,
@@ -443,6 +647,16 @@ function populate_val_dicts () {
 		"templates/kpis_tile.html",
 		'kpis_tile'
 	);				
+}
+
+function shorten_value(value){
+  if (value >= 1000000000) {
+      return (Math.round(value/1000000000 * 100) / 100).toLocaleString() + "B";
+  } else if (value >= 1000000) {
+      return (Math.round(value/1000000 * 100) / 100).toLocaleString() + "M";
+  } else {
+      return (Math.round(value * 100) / 100).toLocaleString();
+  }
 }
 
 // function that draws the charts
@@ -470,7 +684,10 @@ function coinMarketCap(){
         scales: {
             xAxes: [{
                 ticks: {
-                    beginAtZero: true
+                    beginAtZero: true,
+                    callback: function(value, index, values) {
+                        return value.toLocaleString();
+                    }
                 }
             }]
         },
