@@ -606,8 +606,13 @@ function populate_val_dicts () {
                 setCellContents(stats_table, num_tokens, 6, response[item].percent_change_24h, 1);
                 setCellContents(stats_table, num_tokens, 7, response[item].percent_change_7d, 1);
                 setCellContents(stats_table, num_tokens, 8, response[item].rank, 0);
-                setCellContents(stats_table, num_tokens, 9, det_curr_sign_beg + Math.round(response[item][market_cap_attr]).toLocaleString() + det_curr_sign_end, 0);
-                setCellContents(stats_table, num_tokens, 10, det_curr_sign_beg + Math.round(response[item][volume_attr]).toLocaleString() + det_curr_sign_end, 0);
+                if (base_currency === "BTC"){
+                    setCellContents(stats_table, num_tokens, 9, "$" + Math.round(response[item][market_cap_attr]).toLocaleString(), 0);
+                    setCellContents(stats_table, num_tokens, 10, "$" + Math.round(response[item][volume_attr]).toLocaleString(), 0);
+                } else {
+                    setCellContents(stats_table, num_tokens, 9, det_curr_sign_beg + Math.round(response[item][market_cap_attr]).toLocaleString() + det_curr_sign_end, 0);
+                    setCellContents(stats_table, num_tokens, 10, det_curr_sign_beg + Math.round(response[item][volume_attr]).toLocaleString() + det_curr_sign_end, 0);
+                }
             }
         }
     }
