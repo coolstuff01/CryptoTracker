@@ -1,7 +1,7 @@
 
 <?php 
 	
-	
+	session_start();
 	$g_url_to_app=pathinfo($_SERVER["REQUEST_SCHEME"]."://".$_SERVER["SERVER_ADDR"]."/".$_SERVER["REQUEST_URI"])['dirname'];
 
 
@@ -9,7 +9,6 @@
     
     require("common.php"); 
 	require("vendor/phpmailer/send_mail.php"); 
-	session_start();
 	
 	$message="";
 	
