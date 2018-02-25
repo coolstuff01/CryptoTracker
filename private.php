@@ -18,7 +18,7 @@ if(empty($_SESSION['user'])){
 
 	// update tockenlist if it is older than 24 hrs
 		
-	include('save_tocken_list.php');
+	//include('save_tocken_list.php'); // no longer used
 	
 	
 ?> 
