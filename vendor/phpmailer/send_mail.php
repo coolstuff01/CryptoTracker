@@ -9,14 +9,20 @@ function send_mail($from_addr, $from_name, $to_array_addr, $subj, $body, $bcc=nu
 	//$mail->SMTPDebug = 3;                               // Enable verbose debug output
 
 	$mail->isSMTP();                                      // Set mailer to use SMTP
-	$mail->Host = "smtp.gmail.com";  // Specify main and backup SMTP servers
+	$mail->Host = "sv62.ifastnet11.org";  // Specify main and backup SMTP servers
 	$mail->SMTPAuth = true;                               // Enable SMTP authentication
 	
-	$mail->Username = "cryptuxa@gmail.com";                 // SMTP username
-	$mail->Password = "kriptuha";                           // SMTP password
+	//$mail->Username = "cryptuxa@gmail.com";                 // SMTP username
+	$mail->Username = "support@cointork.com";                 // SMTP username
+	$mail->Password = "vh{@}cCBO)(.%";                           // SMTP password
 	$mail->SMTPSecure = "ssl";                            // Enable TLS encryption, `ssl` also accepted
-	$mail->Port = 465;      
-	//$mail->SMTPDebug = 3;	// TCP port to connect to
+	//$mail->SMTPSecure = "tls";                            // Enable TLS encryption, `ssl` also accepted
+	$mail->Port = 290;      
+	//$mail->Port = 587;      
+
+	
+	
+	// for google only <
 	
 	$mail->SMTPOptions = array(
 		'ssl' => array(
@@ -24,7 +30,9 @@ function send_mail($from_addr, $from_name, $to_array_addr, $subj, $body, $bcc=nu
 			'verify_peer_name' => false,
 			'allow_self_signed' => true
 		)
-	);	
+	);
+	
+	// for google only >
 	
 	if(!is_null($bcc)){$mail->AddBCC($bcc, "bcc_rec");};
 
@@ -36,7 +44,7 @@ function send_mail($from_addr, $from_name, $to_array_addr, $subj, $body, $bcc=nu
 		$mail->addAddress($to_array_addr[$x]);     // Add a recipient
 	}	
 	
-	$mail->addAddress('kirill.savine@gmail.com');     // Add a recipient
+	//$mail->addAddress('kirill.savine@gmail.com');     // Add a recipient
 	//$mail->addAddress('ellen@example.com');               // Name is optional
 	//$mail->addReplyTo('info@example.com', 'Information');
 	//$mail->addCC('cc@example.com');

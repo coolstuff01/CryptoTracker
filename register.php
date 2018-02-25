@@ -24,6 +24,7 @@
 		//initiate a captcha
 		
 		$message="";
+		$message_colo="red";
 		$reg_ok=true;
 		
 		if(strtolower($_SESSION['captcha']['code'])!=strtolower($_POST['capt'])){$reg_ok=false;$message=$message."<br> make sure you enetered correct characters from image.";}
@@ -124,7 +125,7 @@
 			//die();
 			
 			send_mail(
-				"cryptuxa@gmail.com", 
+				"support@cointork.com", 
 				"Thank you for signing up with Crypta", 
 				Array($_POST['email']), 
 				"THANK YOU! ACTIVATE!", 
@@ -133,7 +134,8 @@
 			);
 			
 			
-			$message=$message."<br>Thank you for your registration,  activate your account by clicking the link sent to your e-mail: ".$_POST['email'];
+			$message=$message."<br>Thank you for your registration,  activate your account by clicking the link sent to your e-mail: ".$_POST['email'].". <b>Please remember to check spam folder!</b>";
+			$message_colo="green";
 			include("vendor/simple_php_captcha/simple-php-captcha.php");  
 			$_SESSION['captcha'] = simple_php_captcha();				
 			
@@ -168,7 +170,7 @@
 			<input type="password" name="password2" value="" placeholder="Repeat Password"/> 					
 			<input type="text" name="capt" value="" placeholder="Enter characters from the image below"/> 
 			<img src="<?php echo $_SESSION['captcha']['image_src']; ?>"></img><br>			
-			<p style='color:red'><?php echo $message; ?></p>
+			<p style='color:<?php echo $message_colo; ?>'><?php echo $message; ?></p>
 			<input type="submit" value="Register" class='login_button' id="subm"/> 			
 		</form> 
 		<input type="submit" value="Back to Login" class='login_button' onclick='window.location.href="login.php";'/>

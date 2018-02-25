@@ -616,7 +616,9 @@ function populate_val_dicts () {
             }
         }
     }
-
+	
+	//alert(stats_table);
+	
     for (var key in amounts_usd) {
         total_change_1h += (amounts_usd[key] / total_usd) * change_1h[key];
         total_change_24h += (amounts_usd[key] / total_usd) * change_24h[key];
