@@ -638,9 +638,9 @@ function populate_val_dicts () {
 	
 	render_template(
 		{ 
-			"i_val_1" : "Ƀ" + shorten_value(total_btc),
-			"i_val_2" : "$" + shorten_value(total_usd),
-			"i_val_3" : curr_sign_beg + shorten_value(total_loc) + curr_sign_end,
+			"i_val_1" : "Ƀ" + shorten_value(total_btc, 1),
+			"i_val_2" : "$" + shorten_value(total_usd, 0),
+			"i_val_3" : curr_sign_beg + shorten_value(total_loc, 0) + curr_sign_end,
 			"i_val_4" : Math.round(total_change_1h * 100) / 100 + "%",
 			"i_val_5" : Math.round(total_change_24h * 100) / 100 + "%",
 			"i_val_6" : Math.round(total_change_7d * 100) / 100 + "%",
@@ -654,14 +654,24 @@ function populate_val_dicts () {
 	);				
 }
 
-function shorten_value(value){
-  if (value >= 1000000000) {
-      return (Math.round(value/1000000000 * 100) / 100).toLocaleString() + "B";
-  } else if (value >= 1000000) {
-      return (Math.round(value/1000000 * 100) / 100).toLocaleString() + "M";
-  } else {
-      return (Math.round(value * 100) / 100).toLocaleString();
-  }
+function shorten_value(value, is_btc){
+    if(is_btc){
+        if (value >= 1000000000) {
+            return (Math.round(value/1000000000 * 100) / 100).toLocaleString() + "B";
+        } else if (value >= 1000000) {
+            return (Math.round(value/1000000 * 100) / 100).toLocaleString() + "M";
+        } else {
+            return (Math.round(value * 100) / 100).toLocaleString();
+        }
+    } else {
+        if (value >= 1000000000) {
+            return (Math.round(value/1000000000 * 100) / 100).toLocaleString() + "B";
+        } else if (value >= 1000000) {
+            return (Math.round(value/1000000 * 100) / 100).toLocaleString() + "M";
+        } else {
+            return Math.round(value).toLocaleString();
+        }
+    }
 }
 
 // function that draws the charts
