@@ -840,7 +840,7 @@ function coinMarketCap(){
           tooltips: {
               callbacks: {
                   label: function(tooltipItems, data) { 
-                      return det_curr_sign_beg + " " + data.datasets[tooltipItems.datasetIndex].data[tooltipItems.index].toLocaleString() + det_curr_sign_end;
+                      return data.labels[tooltipItems.index] + ": " + det_curr_sign_beg + " " + data.datasets[tooltipItems.datasetIndex].data[tooltipItems.index].toLocaleString() + det_curr_sign_end;
                   }
               }
           },
