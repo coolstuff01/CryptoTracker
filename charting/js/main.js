@@ -584,7 +584,7 @@ function populate_val_dicts () {
     stats_table.innerHTML = "";
     stats_table.innerHTML = "<tr><th width='100px'>#</th><th width='100px'>Token</th><th width='100px'>Quantity</th><th width='100px'>Price in " + base_currency + "</th><th width='100px'>Total in " + base_currency + "</th><th width='100px'>Change 1h USD</th><th width='100px'>Change 24h USD</th><th width='100px'>Change 7d USD</th><th width='100px'>Rank</th><th width=100px'>Market Cap " + market_cap_attr.split("_")[2].toUpperCase() + "</th><th width=100px'>Volume 24h " + volume_attr.split("_")[2].toUpperCase() + "</th></tr>";
 
-    // Loop through necessary currencies and pull data from API
+    // Loop through necessary currencies and pull data from API			
     for (var key in currs) {
         for (var item = 0; item < response.length; item++) {
             if (response[item].symbol === key) {

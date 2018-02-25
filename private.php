@@ -272,7 +272,8 @@ $(document).ready(function(){
 		countdownTimerID = setInterval(countMeDown, 1000);
 		make_up_charts($('.x_content').css('width'),'250px'); // ensure charts are adapted to widget size (in case if screen size changed), current CSS has a constant widget height of 320px, thus making chart height also constant at 250px		
 		console.log("found profolio logs for user "+g_u);	
-		coinMarketCap() // draw charts
+		coinMarketCap(); // draw charts
+		update_chart();
 		
 		
 		
@@ -748,7 +749,7 @@ $(document).ready(function() {
 	  <div class="clearfix"></div>
 	</div>
 	<div class="x_content">			
-		<table id="stats_table" class="table-striped" style='width:100%'>
+		<table id="stats_table" style='width:100%'>
 			
 		</table>
 	</div>
