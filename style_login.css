@@ -11,8 +11,12 @@ body {
     margin: 30px auto;
 }
 
+#username, #password{
+	padding: 0 20px 0 50px;	
+}
+
 .login-block {
-    width: 320px;
+    width: 360px;
     padding: 20px;
     background: #fff;
     border-radius: 5px;
@@ -38,7 +42,7 @@ body {
     margin-bottom: 20px;
     font-size: 14px;
     font-family: Montserrat;
-    padding: 0 20px 0 50px;
+    padding: 0 20px 0 20px;
     outline: none;
 }
 
