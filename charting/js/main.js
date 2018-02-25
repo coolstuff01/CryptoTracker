@@ -258,7 +258,7 @@ function set_curr_sign (){
             det_curr_sign_end = curr_sign_end;
             break;
         case "IDR":
-            curr_sign_beg = " Rp";
+            curr_sign_beg = "Rp ";
             curr_sign_end = "";
             det_curr_sign_beg = curr_sign_beg;
             det_curr_sign_end = curr_sign_end;
@@ -600,7 +600,7 @@ function populate_val_dicts () {
                 setCellContents(stats_table, num_tokens, 0, num_tokens, 0);
                 setCellContents(stats_table, num_tokens, 1, key, 0);
                 setCellContents(stats_table, num_tokens, 2, (Math.round(currs[key] * precision) / precision).toLocaleString(), 0);
-                setCellContents(stats_table, num_tokens, 3, det_curr_sign_beg + parseFloat(response[item][price_attr]).toLocaleString() + det_curr_sign_end, 0);
+                setCellContents(stats_table, num_tokens, 3, det_curr_sign_beg + parseFloat(Math.round(response[item][price_attr] * 100) / 100).toLocaleString() + det_curr_sign_end, 0);
                 setCellContents(stats_table, num_tokens, 4, det_curr_sign_beg + (Math.round(currs[key] * response[item][price_attr] * 100) / 100).toLocaleString() + det_curr_sign_end, 0);
                 setCellContents(stats_table, num_tokens, 5, response[item].percent_change_1h, 1);
                 setCellContents(stats_table, num_tokens, 6, response[item].percent_change_24h, 1);
@@ -693,6 +693,13 @@ function coinMarketCap(){
           }]
       },
       options: {
+        tooltips: {
+            callbacks: {
+                label: function(tooltipItems, data) { 
+                    return det_curr_sign_beg + " " + tooltipItems.xLabel.toLocaleString() + det_curr_sign_end;
+                }
+            }
+        },
         legend: {
             display: false,
         },
@@ -726,6 +733,13 @@ function coinMarketCap(){
           }]
       },
       options: {
+        tooltips: {
+            callbacks: {
+                label: function(tooltipItems, data) { 
+                    return tooltipItems.yLabel + "%";
+                }
+            }
+        },
         legend: {
             display: false,
         },
@@ -764,6 +778,17 @@ function coinMarketCap(){
           }]
       },
       options: {
+        tooltips: {
+            callbacks: {
+                label: function(tooltipItems, data) { 
+                    if (base_currency === "BTC"){
+                        return "$" + tooltipItems.yLabel.toLocaleString();
+                    } else {
+                        return det_curr_sign_beg + tooltipItems.yLabel.toLocaleString() + det_curr_sign_end;
+                    }
+                }
+            }
+        },
         legend: {
             display: false,
         },
@@ -810,6 +835,13 @@ function coinMarketCap(){
           }]
       },
       options: {
+          tooltips: {
+              callbacks: {
+                  label: function(tooltipItems, data) { 
+                      return det_curr_sign_beg + " " + data.datasets[tooltipItems.datasetIndex].data[tooltipItems.index].toLocaleString() + det_curr_sign_end;
+                  }
+              }
+          },
           legend: {
               onClick: null
           },
