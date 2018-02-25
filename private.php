@@ -92,6 +92,13 @@ if(empty($_SESSION['user'])){
 	<script type="text/javascript" src="charting/vendor/Ajax-Bootstrap-Select-master/js/ajax-bootstrap-select.js"></script>			
 	<script src="charting/vendor/modernizr/modernizr-3.5.0.min.js"></script>		
 	
+<script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/buttons/1.4.2/js/dataTables.buttons.min.js"></script>
+<script type="text/javascript" language="javascript" src="//cdn.datatables.net/buttons/1.4.2/js/buttons.html5.min.js"></script>
+<link href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.4.2/css/buttons.dataTables.min.css">
+		
+	
     <!-- Flot -->
     <!--<script src="vendor/Flot/jquery.flot.js"></script>
     <script src="vendor/Flot/jquery.flot.pie.js"></script>
@@ -757,7 +764,7 @@ $(document).ready(function() {
         <!-- footer content -->
         <footer>
           <div class="pull-right">
-            Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a>
+            Any questions/concerns? <a href="mailto:cryptuxa@gmail.com">Contact Support</a>
           </div>
           <div class="clearfix"></div>
         </footer>
