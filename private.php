@@ -18,7 +18,7 @@ if(empty($_SESSION['user'])){
 
 	// update tockenlist if it is older than 24 hrs
 		
-	include('save_tocken_list.php');
+	//include('save_tocken_list.php'); // no longer used
 	
 	
 ?> 
@@ -267,12 +267,15 @@ $(document).ready(function(){
 		currs=port;	
 		$('#main_content_span').show();	// show widgets (ignored if already shown)		
 		populate_val_dicts(); // from main.js populate global ticker dictionary
-		coinMarketCap();		// draw charts
-    countdown = ref_freq;
-    clearInterval(countdownTimerID);
-    countdownTimerID = setInterval(countMeDown, 1000);
+		countdown = ref_freq;
+		clearInterval(countdownTimerID);
+		countdownTimerID = setInterval(countMeDown, 1000);
 		make_up_charts($('.x_content').css('width'),'250px'); // ensure charts are adapted to widget size (in case if screen size changed), current CSS has a constant widget height of 320px, thus making chart height also constant at 250px		
 		console.log("found profolio logs for user "+g_u);	
+		coinMarketCap() // draw charts
+		
+		
+		
 
 	}	
 	/* Read portfolio from DB END */
