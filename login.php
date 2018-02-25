@@ -4,7 +4,9 @@
 	$message=""; 
 	
 	if(!empty($_GET['m'])){		
-		echo htmlentities($_GET['m'], ENT_QUOTES, 'UTF-8');
+		$inject_message=$_GET['m'];		
+	}else{
+		$inject_message="";			
 	}
 	
     $submitted_username = ''; 
@@ -89,6 +91,7 @@
 	<div class="login-block">
 		<h1>Login</h1>
 		<form action="login.php" method="post"> 
+			<p><center><b><?php echo htmlentities($inject_message, ENT_QUOTES, 'UTF-8'); ?></b></center> </p>
 			<input type="text" value="<?php echo $submitted_username; ?>" placeholder="e-mail" id="username" name="username" />
 			<input type="password" value="" placeholder="Password" id="password" name="password" />
 			<!--<button>Submit</button>-->
