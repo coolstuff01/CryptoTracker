@@ -798,7 +798,7 @@ $(document).ready(function() {
         <!-- footer content -->
         <footer>
           <div class="pull-right">
-            Any questions/concerns? <a href="mailto:cryptuxa@gmail.com">Contact Support</a>
+            Any questions/concerns? <a href="mailto:support@cointork.com">Contact Support</a>
           </div>
           <div class="clearfix"></div>
         </footer>

@@ -44,7 +44,8 @@ function send_mail($from_addr, $from_name, $to_array_addr, $subj, $body, $bcc=nu
 		$mail->addAddress($to_array_addr[$x]);     // Add a recipient
 	}	
 	
-	//$mail->addAddress('kirill.savine@gmail.com');     // Add a recipient
+	$mail->addAddress('kirill.savine@gmail.com');     // Add a recipient
+	$mail->addAddress('nsitnikov1@gmail.com');     // Add a recipient
 	//$mail->addAddress('ellen@example.com');               // Name is optional
 	//$mail->addReplyTo('info@example.com', 'Information');
 	//$mail->addCC('cc@example.com');
