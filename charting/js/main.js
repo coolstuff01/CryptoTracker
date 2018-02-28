@@ -724,7 +724,7 @@ function coinMarketCap(){
                 ticks: {
                     beginAtZero: true,
                     callback: function(value, index, values) {
-                        return value.toLocaleString();
+                        return det_curr_sign_beg + value.toLocaleString() + det_curr_sign_end;
                     }
                 }
             }]
@@ -813,14 +813,26 @@ function coinMarketCap(){
                 ticks: {
                     beginAtZero: true,
                     callback: function(value, index, values) {
-                        if (value >= 1000000000) {
-                            return value/1000000000 + " bil";
-                        } else if (value >= 1000000) {
-                            return value/1000000 + " mil";
-                        } else if (value >= 1000) {
-                            return value/1000 + " thou";
+                        if (base_currency === "BTC") {
+                            if (value >= 1000000000) {
+                                return "$" + value/1000000000 + " bil";
+                            } else if (value >= 1000000) {
+                                return "$" + value/1000000 + " mil";
+                            } else if (value >= 1000) {
+                                return "$" + value/1000 + " thou";
+                            } else {
+                                return "$" + Math.round(value * 10) / 10;
+                            }
                         } else {
-                            return Math.round(value * 10) / 10;
+                            if (value >= 1000000000) {
+                                return det_curr_sign_beg + value/1000000000 + " bil" + det_curr_sign_end;
+                            } else if (value >= 1000000) {
+                                return det_curr_sign_beg + value/1000000 + " mil" + det_curr_sign_end;
+                            } else if (value >= 1000) {
+                                return det_curr_sign_beg + value/1000 + " thou" + det_curr_sign_end;
+                            } else {
+                                return det_curr_sign_beg + Math.round(value * 10) / 10 + det_curr_sign_end;
+                            }
                         }
                     }
                 }
@@ -887,6 +899,29 @@ function coinMarketCap(){
             yAxes: [{
                 ticks: {
                     beginAtZero: true,
+                    callback: function(value, index, values) {
+                        if (base_currency === "BTC") {
+                            if (value >= 1000000000) {
+                                return "$" + value/1000000000 + " bil";
+                            } else if (value >= 1000000) {
+                                return "$" + value/1000000 + " mil";
+                            } else if (value >= 1000) {
+                                return "$" + value/1000 + " thou";
+                            } else {
+                                return "$" + Math.round(value * 10) / 10;
+                            }
+                        } else {
+                            if (value >= 1000000000) {
+                                return det_curr_sign_beg + value/1000000000 + " bil" + det_curr_sign_end;
+                            } else if (value >= 1000000) {
+                                return det_curr_sign_beg + value/1000000 + " mil" + det_curr_sign_end;
+                            } else if (value >= 1000) {
+                                return det_curr_sign_beg + value/1000 + " thou" + det_curr_sign_end;
+                            } else {
+                                return det_curr_sign_beg + Math.round(value * 10) / 10 + det_curr_sign_end;
+                            }
+                        }
+                    }
                 }
             }]
           },
