@@ -468,6 +468,7 @@ function sort_curr(dict_stat) {
 //Update the chart
 function update_chart(){
     parse_cmc_data();
+    get_line_chart_data();
 
     change_sorted = sort_curr(eval("change_" + tm_frame));
     volume_sorted = sort_curr(eval("volume_" + volume_curr));
@@ -527,6 +528,19 @@ function update_chart(){
     };
 //    pieChart.data.datasets[0].data = get_values(amounts_btc);
     pieChart.update();
+
+    livePriceChart.data = {
+      labels: [1, 2, 3],
+      datasets: [{
+          label: "BTC",
+          data: [157.32, 20, 15], //get_values(eval("amounts_" + logic_currency)),
+          backgroundColor: gradient_color([""], theme_grad), //generate_colors(amounts_btc),
+          borderColor: gradient_color([""], theme_grad), //generate_colors(amounts_btc),
+          fill: true
+      }]
+    };
+//    pieChart.data.datasets[0].data = get_values(amounts_btc);
+    livePriceChart.update();
 }
 
 // function responsible for calling cointmarketcap and getting currency data
@@ -588,7 +602,7 @@ function populate_val_dicts () {
     for (var key in currs) {
         for (var item = 0; item < response.length; item++) {
             if (response[item].symbol === key) {
-                [amounts_btc[key], amounts_loc[key], amounts_usd[key], change_1h[key], change_24h[key], change_7d[key], volume_usd[key], volume_base[key]] = [Math.round(response[item].price_btc * currs[key] * precision) / precision, Math.round(response[item][price_attr] * currs[key] * precision) / precision, Math.round(response[item].price_usd * currs[key] * precision) / precision, response[item].percent_change_1h, response[item].percent_change_24h, response[item].percent_change_7d, response[item]["24h_volume_usd"], response[item][volume_attr]];
+                [amounts_btc[key], amounts_loc[key], amounts_usd[key], change_1h[key], change_24h[key], change_7d[key], volume_usd[key], volume_base[key]] = [response[item].price_btc * currs[key], Math.round(response[item][price_attr] * currs[key] * precision) / precision, Math.round(response[item].price_usd * currs[key] * precision) / precision, response[item].percent_change_1h, response[item].percent_change_24h, response[item].percent_change_7d, response[item]["24h_volume_usd"], response[item][volume_attr]];
 
                 num_tokens++;
 
@@ -852,6 +866,43 @@ function coinMarketCap(){
 		  maintainAspectRatio: false
       }
   });
+
+    var livePriceCanvas = document.getElementById("livePriceChart");
+    livePriceChart = new Chart(livePriceCanvas, {
+      type: 'line',
+      data: {
+          labels: [1, 2, 3],
+          datasets: [{
+              label: "BTC",
+              data: [157.32, 20, 15], //get_values(eval("amounts_" + logic_currency)),
+              backgroundColor: gradient_color([""], theme_grad), //generate_colors(amounts_btc),
+              borderColor: gradient_color([""], theme_grad), //generate_colors(amounts_btc),
+              fill: true
+          }]
+      },
+      options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true,
+                }
+            }]
+          },
+          tooltips: {
+            callbacks: {
+                label: function(tooltipItems, data) { 
+                    return "$ " + tooltipItems.yLabel.toLocaleString(); // return det_curr_sign_beg + " " + tooltipItems.xLabel.toLocaleString() + det_curr_sign_end;
+                }
+            }
+          },
+          legend: {
+              onClick: null
+          }
+      }
+  });
+  //alert(Object.keys(livePriceChart.options.scales.yAxes[0].position));
 }
 
 
