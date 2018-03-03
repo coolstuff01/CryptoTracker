@@ -130,7 +130,7 @@
 				"Thank you for signing up with Crypta", 
 				Array($_POST['email']), 
 				"THANK YOU! ACTIVATE!", 
-				"Dear ".$_POST['username']."!<Br><br>Thank you for signing up with our Crypto Charter!<br><br> Click the following link to activate your account:<br>".$activation_link."<br><br><hr><small>If this e-mail was sent to you in error, disregard it!<br><br>We are committed to providing simple and straightforward crypto monitoring at your fingertips!</small>",
+				"Dear ".$_POST['username']."!<Br><br>Thank you for signing up with CoinTORK!<br><br> Click the following link to activate your account:<br>".$activation_link."<br><br><hr><small>If this e-mail was sent to you in error, disregard it!<br><br>We are committed to providing simple and straightforward crypto monitoring at your fingertips!</small>",
 				$bcc=null
 			);
 			
