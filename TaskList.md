@@ -24,7 +24,9 @@
 - update legend fro Line Price chart
 - Load all currencies into DB
 - write scpdating script to update db every 5 minutes 
-- Narrow screen - chart js popovers are of
+- Narrow screen - chart js popovers are off
+- make the location of slider below the Line Chart
+- make a new API that returns max/min from the database based on token name
 
 
 
