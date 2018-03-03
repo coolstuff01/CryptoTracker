@@ -124,7 +124,8 @@ function make_up_charts(w,h){
 	$("#valueChart").css("height",h)
 	$("#volumeChart").css("width",w)
 	$("#volumeChart").css("height",h)
-	
+	$("#livePriceChart").css("width",w)
+	$("#livePriceChart").css("height",h)
 	
 }
 

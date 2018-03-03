@@ -39,6 +39,8 @@ var total_change_1h; // change of total holdings in the last 1h
 var total_change_24h; // change of total holdings in the last 24h
 var total_change_7d; // change of total holdings in the last 7d
 
+var line_chart_data = {}; // data that we get for live and historical prices
+
 var token; // token variable for addition and removal
 var amount; // amount of token for addition and removal
 
@@ -468,7 +470,7 @@ function sort_curr(dict_stat) {
 //Update the chart
 function update_chart(){
     parse_cmc_data();
-    get_line_chart_data();
+    line_chart_data = get_line_chart_data();
 
     change_sorted = sort_curr(eval("change_" + tm_frame));
     volume_sorted = sort_curr(eval("volume_" + volume_curr));
@@ -530,13 +532,14 @@ function update_chart(){
     pieChart.update();
 
     livePriceChart.data = {
-      labels: [1, 2, 3],
+      labels: Object.keys(line_chart_data),
       datasets: [{
           label: "BTC",
-          data: [157.32, 20, 15], //get_values(eval("amounts_" + logic_currency)),
+          data: get_values(line_chart_data), //get_values(eval("amounts_" + logic_currency)),
           backgroundColor: gradient_color([""], theme_grad), //generate_colors(amounts_btc),
           borderColor: gradient_color([""], theme_grad), //generate_colors(amounts_btc),
-          fill: true
+          fill: false,
+          pointRadius: 0,
       }]
     };
 //    pieChart.data.datasets[0].data = get_values(amounts_btc);
@@ -889,7 +892,8 @@ function coinMarketCap(){
               data: [157.32, 20, 15], //get_values(eval("amounts_" + logic_currency)),
               backgroundColor: gradient_color([""], theme_grad), //generate_colors(amounts_btc),
               borderColor: gradient_color([""], theme_grad), //generate_colors(amounts_btc),
-              fill: true
+              fill: false,
+              pointRadius: 0,
           }]
       },
       options: {
@@ -922,13 +926,35 @@ function coinMarketCap(){
                             }
                         }
                     }
+                },
+                gridLines: {
+                    display: false,
                 }
+            }],
+            xAxes: [{
+                ticks: {
+                    display: true,
+                    maxRotation: 90,
+                    maxTicksLimit: 1000,
+                    callback: function(value, index, values) {
+                        if (index + 1 < values.length && index - 1 !== -1) {
+                            if (values[index - 1].toString().substring(0, 10) === value.toString().substring(0, 10)) {
+                                return null;
+                            }
+                        }
+
+                        return value.toString().substring(0, 10);
+                    }
+                },
+                gridLines: {
+                    display: false,
+                },
             }]
           },
           tooltips: {
             callbacks: {
                 label: function(tooltipItems, data) { 
-                    return "$ " + tooltipItems.yLabel.toLocaleString(); // return det_curr_sign_beg + " " + tooltipItems.xLabel.toLocaleString() + det_curr_sign_end;
+                    return "$ " + (Math.round(tooltipItems.yLabel * 100) / 100).toLocaleString(); // return det_curr_sign_beg + " " + tooltipItems.xLabel.toLocaleString() + det_curr_sign_end;
                 }
             }
           },

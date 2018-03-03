@@ -98,6 +98,9 @@ if(empty($_SESSION['user'])){
 <link href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" rel="stylesheet" />
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.4.2/css/buttons.dataTables.min.css">
 		
+	<link rel="stylesheet" href="vendor/jQRangeSlider-5.7.2/css/iThing.css" type="text/css" />
+	<script src="vendor/jQRangeSlider-5.7.2/jQDateRangeSlider-min.js"></script>
+
 	
     <!-- Flot -->
     <!--<script src="vendor/Flot/jquery.flot.js"></script>
@@ -280,6 +283,11 @@ $(document).ready(function(){
 		
 
 	}	
+
+	$("#date_slider").dateRangeSlider();
+	$("#date_slider").dateRangeSlider("bounds", new Date(price_first_date), new Date(price_last_date));
+	$("#date_slider").dateRangeSlider("min", new Date(price_first_date));
+	$("#date_slider").dateRangeSlider("max", new Date(price_last_date));
 	/* Read portfolio from DB END */
 	
 })
@@ -331,6 +339,7 @@ $(document).ready(function() {
 </head>
 
   <body class="nav-md">
+  <div id="date_slider"></div>
   <div id='loader'><div id='loader_anim'></div></div>
   
     <div class="container body">
