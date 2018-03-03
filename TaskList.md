@@ -21,9 +21,9 @@
 - Make hyperlinks in stats table to select token name
 - possibly embed another token selector inside the Live Chart widget 
 - add labels for Line Price chart
-- update legend fro Line Price chart
+- update legend for the Line Price chart
 - Load all currencies into DB
-- write scpdating script to update db every 5 minutes 
+- write updating script to update db every 5 minutes 
 - Narrow screen - chart js popovers are off
 - make the location of slider below the Line Chart
 - make a new API that returns max/min from the database based on token name
