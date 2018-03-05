@@ -101,6 +101,8 @@ if(empty($_SESSION['user'])){
 	<link rel="stylesheet" href="vendor/jQRangeSlider-5.7.2/css/iThing.css" type="text/css" />
 	<script src="vendor/jQRangeSlider-5.7.2/jQDateRangeSlider-min.js"></script>
 
+	<script src="vendor/date.js"></script>
+
 	
     <!-- Flot -->
     <!--<script src="vendor/Flot/jquery.flot.js"></script>
@@ -285,9 +287,25 @@ $(document).ready(function(){
 	}	
 
 	$("#date_slider").dateRangeSlider();
-	$("#date_slider").dateRangeSlider("bounds", new Date(price_first_date), new Date(price_last_date));
-	$("#date_slider").dateRangeSlider("min", new Date(price_first_date));
-	$("#date_slider").dateRangeSlider("max", new Date(price_last_date));
+	$("#date_slider").dateRangeSlider("bounds", new Date(price_first_date).add(1).day(), new Date(price_last_date).add(1).day());
+	$("#date_slider").dateRangeSlider("min", new Date(price_first_date).add(1).day());
+	$("#date_slider").dateRangeSlider("max", new Date(price_last_date).add(1).day());
+	$("#date_slider").bind("userValuesChanged", function(e, data){
+
+		if (pad_zero(data.values.min.getMonth()) == "11") {
+			price_first_date = data.values.min.getFullYear() + "-" + "12"  + "-" + pad_zero(data.values.min.getDate());
+		} else {
+			price_first_date = data.values.min.getFullYear() + "-" + pad_zero(data.values.min.add(1).month().getMonth())  + "-" + pad_zero(data.values.min.getDate());
+		}
+
+		if (pad_zero(data.values.max.getMonth()) == "11") {
+			price_last_date = data.values.max.getFullYear() + "-" + "12"  + "-" + pad_zero(data.values.max.getDate());
+		} else {
+			price_last_date = data.values.max.getFullYear() + "-" + pad_zero(data.values.max.add(1).month().getMonth())  + "-" + pad_zero(data.values.max.getDate());
+		}
+
+  		update_chart();
+	});
 	/* Read portfolio from DB END */
 	
 })

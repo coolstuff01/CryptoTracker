@@ -481,7 +481,7 @@ function update_chart(){
           label: "Value in " + base_currency,
           data: get_values(eval("amounts_" + logic_currency)),
           backgroundColor: gradient_color(eval("amounts_" + logic_currency), theme_grad), //generate_colors(amounts_btc),
-          borderColor: white, //generate_colors(amounts_btc),
+          borderColor: gradient_color(eval("amounts_" + logic_currency), theme_grad), //white, //generate_colors(amounts_btc),
           borderWidth: 2,
           hoverBackgroundColor: black //generate_colors(amounts_btc)
       }]
@@ -495,7 +495,7 @@ function update_chart(){
           label: "Percent Change " + tm_frame, // + base_currency,
           data: get_values(change_sorted), //eval("amounts_" + logic_currency)),
           backgroundColor: gradient_color(change_sorted, theme_grad), //eval("amounts_" + logic_currency), theme_grad), //generate_colors(amounts_btc),
-          borderColor: white, //generate_colors(amounts_btc),
+          borderColor: gradient_color(change_sorted, theme_grad), // white, //generate_colors(amounts_btc),
           borderWidth: 2,
           hoverBackgroundColor: black //generate_colors(amounts_btc)
       }]
@@ -509,7 +509,7 @@ function update_chart(){
           label: "Trading Volume in " + volume_attr.split("_")[2].toUpperCase(),
           data: get_values(volume_sorted),
           backgroundColor: gradient_color(volume_sorted, theme_grad), //generate_colors(amounts_btc),
-          borderColor: white, //generate_colors(amounts_btc),
+          borderColor: gradient_color(volume_sorted, theme_grad), // white, //generate_colors(amounts_btc),
           borderWidth: 2,
           hoverBackgroundColor: black //generate_colors(amounts_btc)
       }]
@@ -730,6 +730,11 @@ function coinMarketCap(){
                         return det_curr_sign_beg + value.toLocaleString() + det_curr_sign_end;
                     }
                 }
+            }],
+            yAxes: [{
+                gridLines: {
+                    display: false,
+                }
             }]
         },
 		responsive: true,
@@ -769,6 +774,11 @@ function coinMarketCap(){
                     callback: function(value, index, values) {
                         return Math.round(value.toFixed(4) * 100) / 100 + "%";
                     }
+                }
+            }],
+            xAxes: [{
+                gridLines: {
+                    display: false,
                 }
             }]
         },
@@ -838,6 +848,11 @@ function coinMarketCap(){
                             }
                         }
                     }
+                }
+            }],
+            xAxes: [{
+                gridLines: {
+                    display: false,
                 }
             }]
         },
@@ -928,26 +943,34 @@ function coinMarketCap(){
                     }
                 },
                 gridLines: {
-                    display: false,
+                    display: true,
                 }
             }],
             xAxes: [{
                 ticks: {
                     display: true,
-                    maxRotation: 90,
-                    maxTicksLimit: 1000,
+                    maxRotation: 0,
+                    maxTicksLimit: 10,
                     callback: function(value, index, values) {
-                        if (index + 1 < values.length && index - 1 !== -1) {
-                            if (values[index - 1].toString().substring(0, 10) === value.toString().substring(0, 10)) {
-                                return null;
-                            }
+                        if (price_first_date === price_last_date) {
+                            return value.toString().substring(11);
+                        } else if (days_diff(price_first_date, price_last_date) > 9) {
+                            return num_to_text_date(value.toString()).substring(0, 12);
                         }
+                        return num_to_text_date(value.toString());
+                    },
+                    // callback: function(value, index, values) {
+                    //     if (index + 1 < values.length && index - 1 !== -1) {
+                    //         if (values[index - 1].toString().substring(0, 10) === value.toString().substring(0, 10)) {
+                    //             return value.toString().substring(10);
+                    //         }
+                    //     }
 
-                        return value.toString().substring(0, 10);
-                    }
+                    //     return value.toString().substring(0, 10);
+                    // }
                 },
                 gridLines: {
-                    display: false,
+                    display: true,
                 },
             }]
           },
@@ -966,6 +989,53 @@ function coinMarketCap(){
   //alert(Object.keys(livePriceChart.options.scales.yAxes[0].position));
 }
 
+
+// Transform date string yyyy-mm-dd into dd mmm, yyyy
+function num_to_text_date(date) {
+    var f_day = date.substring(8, 10);
+    var f_month = "";
+    switch (date.substring(5, 7)) {
+        case "01":
+            f_month = "Jan";
+            break;
+        case "02":
+            f_month = "Feb";
+            break;
+        case "03":
+            f_month = "Mar";
+            break;
+        case "04":
+            f_month = "Apr";
+            break;
+        case "05":
+            f_month = "May";
+            break;
+        case "06":
+            f_month = "Jun";
+            break;
+        case "07":
+            f_month = "Jul";
+            break;
+        case "08":
+            f_month = "Aug";
+            break;
+        case "09":
+            f_month = "Sep";
+            break;
+        case "10":
+            f_month = "Oct";
+            break;
+        case "11":
+            f_month = "Nov";
+            break;
+        case "12":
+            f_month = "Dec";
+            break;
+    }
+    var f_year = date.substring(0, 4);
+    return f_day + " " + f_month + ", " + f_year + date.substring(10, 16);
+
+}
 
 // Get dictionary values
 function get_values(dict) {
