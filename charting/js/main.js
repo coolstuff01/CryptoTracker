@@ -14,6 +14,7 @@ var volume_attr = "24h_volume_" + "usd"; // base currency for 24h volume is usd
 var logic_currency = "btc"; // base currency for underlying logic
 var response = []; // variable to store response from coinmarketcap
 var valid_tks = []; // valid tokens
+var symbol_to_id = {}; // dictionary that relates symbols to ids
 
 var currs = {}; // list for all currencies in portfolio
 
@@ -151,6 +152,7 @@ cmc_url_active = curr_url();
 response = pullCryptoData(cmc_url_active);
 for (var item = 0; item < response.length; item++) {
     valid_tks.push(response[item].symbol);
+    symbol_to_id[response[item].symbol] = response[item].id;
 }
 
 
@@ -383,8 +385,8 @@ function pullCryptoData(url){
 
 //Add, remove token to graphs or refresh graph
 function chart_actions(operation){
-    token = $('#token_name').val()
-	token=token.substring(token.lastIndexOf("(")+1,token.lastIndexOf(")"));
+    token = $('#token_name').val();
+	token = token.substring(token.lastIndexOf("(")+1,token.lastIndexOf(")"));
 	
     amount = parseFloat(document.getElementById("token_amount").value);
     if (operation === "add"){
@@ -553,10 +555,14 @@ function update_pie () {
 
 // updates Line Chard
 function update_line () {
+
+    var token = $('#token_name').val();
+    token = token.substring(token.lastIndexOf("(")+1,token.lastIndexOf(")"));
+
     livePriceChart.data = {
       labels: Object.keys(line_chart_data),
       datasets: [{
-          label: "BTC",
+          label: token,
           data: get_values(line_chart_data), //get_values(eval("amounts_" + logic_currency)),
           backgroundColor: gradient_color([""], theme_grad), //generate_colors(amounts_btc),
           borderColor: gradient_color([""], theme_grad), //generate_colors(amounts_btc),

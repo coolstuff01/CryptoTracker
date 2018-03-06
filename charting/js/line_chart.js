@@ -38,6 +38,9 @@ function pullLivePriceData(url){
 
 
 function get_line_chart_data() {
+    var token = $('#token_name').val();
+    token = token.substring(token.lastIndexOf("(")+1,token.lastIndexOf(")"));
+    live_price_curr = symbol_to_id[token];
     live_price_url = live_price_url_base.replace("CCCCC", live_price_curr).replace("FFFFF", price_first_date).replace("TTTTT", price_last_date);
     response_live_price = pullLivePriceData(live_price_url);
     response_data = {};
