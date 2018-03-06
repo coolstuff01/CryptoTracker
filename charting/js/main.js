@@ -475,6 +475,16 @@ function update_chart(){
     change_sorted = sort_curr(eval("change_" + tm_frame));
     volume_sorted = sort_curr(eval("volume_" + volume_curr));
 
+    update_value();
+    update_percent();
+    update_volume();
+    update_pie();
+    update_line();
+}
+
+
+// updates Value Chart
+function update_value () {
     valueChart.data = {
       labels: Object.keys(currs),
       datasets: [{
@@ -488,7 +498,10 @@ function update_chart(){
     };
     //valueChart.data.datasets[0].data = get_values(eval("amounts_" + logic_currency));
     valueChart.update();
+}
 
+// updates Percent Chard
+function update_percent () {
     percChangeChart.data = {
       labels: Object.keys(change_sorted),
       datasets: [{
@@ -502,7 +515,10 @@ function update_chart(){
     };
     //percChangeChart.data.datasets[0].data = get_values(eval("amounts_" + logic_currency));
     percChangeChart.update();
+}
 
+// updates Volume Chard
+function update_volume () {
     volumeChart.data = {
       labels: Object.keys(volume_sorted),
       datasets: [{
@@ -516,7 +532,10 @@ function update_chart(){
     };
 //    pieChart.data.datasets[0].data = get_values(amounts_btc);
     volumeChart.update();
+}
 
+// updates Pie Chard
+function update_pie () {
     pieChart.data = {
       labels: Object.keys(currs),
       datasets: [{
@@ -530,7 +549,10 @@ function update_chart(){
     };
 //    pieChart.data.datasets[0].data = get_values(amounts_btc);
     pieChart.update();
+}
 
+// updates Line Chard
+function update_line () {
     livePriceChart.data = {
       labels: Object.keys(line_chart_data),
       datasets: [{
@@ -1082,7 +1104,9 @@ function gradient_color(dict, grad) {
 // Percent change timeframe selection
 function change_perc_timefr (timefr) {
     tm_frame = timefr.split(" ")[0] + timefr.split(" ")[1].charAt(0);
-    update_chart();
+    parse_cmc_data();
+    change_sorted = sort_curr(eval("change_" + tm_frame));
+    update_percent();
 }
 
 // Base reporting currency

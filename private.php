@@ -304,7 +304,8 @@ $(document).ready(function(){
 			price_last_date = data.values.max.getFullYear() + "-" + pad_zero(data.values.max.add(1).month().getMonth())  + "-" + pad_zero(data.values.max.getDate());
 		}
 
-  		update_chart();
+		line_chart_data = get_line_chart_data();
+  		update_line();
 	});
 	/* Read portfolio from DB END */
 	
