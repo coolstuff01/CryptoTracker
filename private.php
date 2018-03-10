@@ -362,7 +362,7 @@ $(document).ready(function() {
 </head>
 
   <body class="nav-md">
-  <div id="date_slider"></div>
+  
   <div id='loader'><div id='loader_anim'></div></div>
   
     <div class="container body">
@@ -758,9 +758,10 @@ $(document).ready(function() {
 </div>  
 
 <div class="col-md-12 col-sm-12 col-xs-12">
+<div id="date_slider"></div>
   <div class="x_panel tile fixed_height_320">
   <div class="x_title">
-    <h2>Live price</h2>
+    <h2>Live price</h2>	
     <ul class="nav navbar-right panel_toolbox">
     <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
     </li>
