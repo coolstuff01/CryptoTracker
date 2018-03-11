@@ -628,8 +628,9 @@ $(document).ready(function() {
 
 
           <br >
-
-          <div class="row">
+			
+		<div style='max-width:1400px;margin: auto;' id='main_row_wrap' >
+          <div class="row" >
 
 	  
 
@@ -838,6 +839,8 @@ $(document).ready(function() {
         <!-- /footer content -->
       </div>
     </div>
+	
+	</div>
 
 
 	
