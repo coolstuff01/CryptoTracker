@@ -13,7 +13,7 @@ var response_data = {};
 
 
 var live_price_curr = "bitcoin";
-var live_price_url_base = "http://li691-76.members.linode.com/20180206_cryptuxa/hist.php?c=CCCCC&f=FFFFF&t=TTTTT";
+var live_price_url_base = "https://factoroom.com/20180206_cryptuxa/hist.php?c=CCCCC&f=FFFFF&t=TTTTT";
 var live_price_url = "";
 
 
