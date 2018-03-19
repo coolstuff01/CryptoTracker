@@ -61,7 +61,7 @@ if(empty($_SESSION['user'])){
 
     <!-- jQuery -->
     <script src="vendor/jquery/dist/jquery.min.js"></script>
-	<script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.templates/beta1/jquery.tmpl.min.js"></script>
+	<script type="text/javascript" src="https://ajax.aspnetcdn.com/ajax/jquery.templates/beta1/jquery.tmpl.min.js"></script>
 	
 	<!-- JQuery UI-->
 	<link rel="stylesheet" href="vendor/jquery-ui/jquery-ui.min.css">
