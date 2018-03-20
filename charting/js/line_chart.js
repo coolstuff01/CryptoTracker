@@ -1,20 +1,24 @@
 var today_date = new Date();
 var price_first_date = "2013-04-28";
-var price_last_date = today_date.getFullYear() + "-" + pad_zero(today_date.getMonth()) + "-" + pad_zero(today_date.getDate());
+var price_last_date = today_date.getFullYear() + "-" + pad_zero(today_date.getMonth() + 1) + "-" + pad_zero(today_date.getDate());
 //price_last_date = "2013-05-09";
-var months_between = 0; 
-if (price_last_date.split("-")[0] === price_first_date.split("-")[0]) {
-    months_between = (parseInt(price_last_date.split("-")[1]) + 1) - parseInt(price_first_date.split("-")[1]);
-} else {
-    months_between = (parseInt(price_last_date.split("-")[1]) + 1) + ((parseInt(price_last_date.split("-")[0]) - 1) - parseInt(price_first_date.split("-")[0])) * 12 + (12 - (parseInt(price_first_date.split("-")[1]) - 1));
-}
+// var months_between = 0; 
+// if (price_last_date.split("-")[0] === price_first_date.split("-")[0]) {
+//     months_between = (parseInt(price_last_date.split("-")[1]) + 1) - parseInt(price_first_date.split("-")[1]);
+// } else {
+//     months_between = (parseInt(price_last_date.split("-")[1]) + 1) + ((parseInt(price_last_date.split("-")[0]) - 1) - parseInt(price_first_date.split("-")[0])) * 12 + (12 - (parseInt(price_first_date.split("-")[1]) - 1));
+// }
 var response_live_price = [];
 var response_data = {};
+var response_date_range = [];
 
 
 var live_price_curr = "bitcoin";
+var prev_curr = "";
 var live_price_url_base = "https://factoroom.com/20180206_cryptuxa/hist.php?c=CCCCC&f=FFFFF&t=TTTTT";
 var live_price_url = "";
+var date_range_url_base = "https://factoroom.com/20180206_cryptuxa/hist.php?c=CCCCC&a=3";
+var date_range_url = "";
 
 
 
@@ -38,9 +42,6 @@ function pullLivePriceData(url){
 
 
 function get_line_chart_data() {
-    var token = $('#token_name').val();
-    token = token.substring(token.lastIndexOf("(")+1,token.lastIndexOf(")"));
-    live_price_curr = symbol_to_id[token];
     live_price_url = live_price_url_base.replace("CCCCC", live_price_curr).replace("FFFFF", price_first_date).replace("TTTTT", price_last_date);
     response_live_price = pullLivePriceData(live_price_url);
     response_data = {};
@@ -48,6 +49,15 @@ function get_line_chart_data() {
         response_data[response_live_price[j].dat + " " + response_live_price[j].tim] = response_live_price[j].usd;
     }
     return response_data;
+}
+
+// get date range
+function get_date_range() {
+    date_range_url = date_range_url_base.replace("CCCCC", live_price_curr);
+    response_date_range = pullLivePriceData(date_range_url);
+    price_first_date = response_date_range[0].min;
+    price_last_date = today_date.getFullYear() + "-" + pad_zero(today_date.getMonth() + 1) + "-" + pad_zero(today_date.getDate());
+    prev_curr = live_price_curr;
 }
 
 

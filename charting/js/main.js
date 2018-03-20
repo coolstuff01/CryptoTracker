@@ -386,8 +386,8 @@ function pullCryptoData(url){
 //Add, remove token to graphs or refresh graph
 function chart_actions(operation){
     token = $('#token_name').val();
-	token = token.substring(token.lastIndexOf("(")+1,token.lastIndexOf(")"));
-	
+    token = token.substring(token.lastIndexOf("(")+1,token.lastIndexOf(")"));
+    
     amount = parseFloat(document.getElementById("token_amount").value);
     if (operation === "add"){
         addToken(token, amount);
@@ -418,9 +418,9 @@ function addToken(token, amount){
         // Check if charts have not been drawn yet
         if ($.isEmptyObject(currs)){
             if (charts_first_call === 0){
-                charts_first_call = 1;
                 coinMarketCap();
-            }	
+                // charts_first_call = 1;
+            }   
             // Initialize the counter
             countdown = ref_freq;
             clearInterval(countdownTimerID);
@@ -472,7 +472,7 @@ function sort_curr(dict_stat) {
 //Update the chart
 function update_chart(){
     parse_cmc_data();
-    line_chart_data = get_line_chart_data();
+    // line_chart_data = get_line_chart_data();
 
     change_sorted = sort_curr(eval("change_" + tm_frame));
     volume_sorted = sort_curr(eval("volume_" + volume_curr));
@@ -558,6 +558,48 @@ function update_line () {
 
     var token = $('#token_name').val();
     token = token.substring(token.lastIndexOf("(")+1,token.lastIndexOf(")"));
+    live_price_curr = symbol_to_id[token];
+
+    if (live_price_curr !== prev_curr || charts_first_call === 0) {
+
+        if (charts_first_call === 0) {
+            $("#date_slider").dateRangeSlider();
+            $("#date_slider").dateRangeSlider("bounds", new Date(price_first_date).add(1).day(), new Date(price_last_date).add(1).day());
+            $("#date_slider").dateRangeSlider("min", new Date(price_first_date).add(1).day());
+            $("#date_slider").dateRangeSlider("max", new Date(price_last_date).add(1).day());
+            $("#date_slider").bind("userValuesChanged", function(e, data){
+
+                if (pad_zero(data.values.min.getMonth()) == "11") {
+                    price_first_date = data.values.min.getFullYear() + "-" + "12"  + "-" + pad_zero(data.values.min.getDate());
+                } else {
+                    price_first_date = data.values.min.getFullYear() + "-" + pad_zero(data.values.min.add(1).month().getMonth())  + "-" + pad_zero(data.values.min.getDate());
+                }
+
+                if (pad_zero(data.values.max.getMonth()) == "11") {
+                    price_last_date = data.values.max.getFullYear() + "-" + "12"  + "-" + pad_zero(data.values.max.getDate());
+                } else {
+                    price_last_date = data.values.max.getFullYear() + "-" + pad_zero(data.values.max.add(1).month().getMonth())  + "-" + pad_zero(data.values.max.getDate());
+                }
+
+                update_line();
+            });
+        }
+
+
+        charts_first_call = 1;
+
+        get_date_range();
+
+        $("#date_slider").dateRangeSlider("bounds", new Date(price_first_date).add(1).day(), new Date(price_last_date).add(1).day());
+        $("#date_slider").dateRangeSlider("min", new Date(price_first_date).add(1).day());
+        $("#date_slider").dateRangeSlider("max", new Date(price_last_date).add(1).day());
+
+    }
+
+    line_chart_data = get_line_chart_data();
+
+    var token = $('#token_name').val();
+    token = token.substring(token.lastIndexOf("(")+1,token.lastIndexOf(")"));
 
     livePriceChart.data = {
       labels: Object.keys(line_chart_data),
@@ -570,6 +612,8 @@ function update_line () {
           pointRadius: 0,
       }]
     };
+
+
 //    pieChart.data.datasets[0].data = get_values(amounts_btc);
     livePriceChart.update();
 }
@@ -629,7 +673,7 @@ function populate_val_dicts () {
     stats_table.innerHTML = "";
     stats_table.innerHTML = "<tr><th width='100px'>#</th><th width='100px'>Token</th><th width='100px'>Quantity</th><th width='100px'>Price in " + base_currency + "</th><th width='100px'>Total in " + base_currency + "</th><th width='100px'>Change 1h USD</th><th width='100px'>Change 24h USD</th><th width='100px'>Change 7d USD</th><th width='100px'>Rank</th><th width=100px'>Market Cap " + market_cap_attr.split("_")[2].toUpperCase() + "</th><th width=100px'>Volume 24h " + volume_attr.split("_")[2].toUpperCase() + "</th></tr>";
 
-    // Loop through necessary currencies and pull data from API			
+    // Loop through necessary currencies and pull data from API         
     for (var key in currs) {
         for (var item = 0; item < response.length; item++) {
             if (response[item].symbol === key) {
@@ -661,9 +705,9 @@ function populate_val_dicts () {
             }
         }
     }
-	
-	//alert(stats_table);
-	
+    
+    //alert(stats_table);
+    
     for (var key in amounts_usd) {
         total_change_1h += (amounts_usd[key] / total_usd) * change_1h[key];
         total_change_24h += (amounts_usd[key] / total_usd) * change_24h[key];
@@ -677,28 +721,28 @@ function populate_val_dicts () {
     //             setCellContents(kpis_table, 1, 3, Math.round(total_change_1h * 100) / 100, 1);
     //             setCellContents(kpis_table, 1, 4, Math.round(total_change_24h * 100) / 100, 1);
     //             setCellContents(kpis_table, 1, 5, Math.round(total_change_7d * 100) / 100, 1);
-	
-	
-	total_change_1h_c = (total_change_1h >0 ? "green" : "red");
-	total_change_24h_c = (total_change_24h >0 ? "green" : "red");
-	total_change_7d_c = (total_change_7d >0 ? "green" : "red");
-	
-	render_template(
-		{ 
-			"i_val_1" : "Ƀ" + shorten_value(total_btc, 1),
-			"i_val_2" : "$" + shorten_value(total_usd, 0),
-			"i_val_3" : curr_sign_beg + shorten_value(total_loc, 0) + curr_sign_end,
-			"i_val_4" : Math.round(total_change_1h * 100) / 100 + "%",
-			"i_val_5" : Math.round(total_change_24h * 100) / 100 + "%",
-			"i_val_6" : Math.round(total_change_7d * 100) / 100 + "%",
-			"i_val_4_c": total_change_1h_c,
-			"i_val_5_c": total_change_24h_c,
-			"i_val_6_c": total_change_7d_c,
-			"i_base_cur" :  url_completion_curr
-		},
-		"templates/kpis_tile.html",
-		'kpis_tile'
-	);				
+    
+    
+    total_change_1h_c = (total_change_1h >0 ? "green" : "red");
+    total_change_24h_c = (total_change_24h >0 ? "green" : "red");
+    total_change_7d_c = (total_change_7d >0 ? "green" : "red");
+    
+    render_template(
+        { 
+            "i_val_1" : "Ƀ" + shorten_value(total_btc, 1),
+            "i_val_2" : "$" + shorten_value(total_usd, 0),
+            "i_val_3" : curr_sign_beg + shorten_value(total_loc, 0) + curr_sign_end,
+            "i_val_4" : Math.round(total_change_1h * 100) / 100 + "%",
+            "i_val_5" : Math.round(total_change_24h * 100) / 100 + "%",
+            "i_val_6" : Math.round(total_change_7d * 100) / 100 + "%",
+            "i_val_4_c": total_change_1h_c,
+            "i_val_5_c": total_change_24h_c,
+            "i_val_6_c": total_change_7d_c,
+            "i_base_cur" :  url_completion_curr
+        },
+        "templates/kpis_tile.html",
+        'kpis_tile'
+    );              
 }
 
 function shorten_value(value, is_btc){
@@ -765,8 +809,8 @@ function coinMarketCap(){
                 }
             }]
         },
-		responsive: true,
-		maintainAspectRatio: false
+        responsive: true,
+        maintainAspectRatio: false
       }
   });
 
@@ -815,8 +859,8 @@ function coinMarketCap(){
             left: 10
         }
     },
-		responsive: true,
-		maintainAspectRatio: false
+        responsive: true,
+        maintainAspectRatio: false
       }
   });
 
@@ -920,8 +964,8 @@ function coinMarketCap(){
               onClick: null
           },
           cutoutPercentage: 25,
-		  responsive: true,
-		  maintainAspectRatio: false
+          responsive: true,
+          maintainAspectRatio: false
       }
   });
 
@@ -1014,6 +1058,7 @@ function coinMarketCap(){
           }
       }
   });
+
   //alert(Object.keys(livePriceChart.options.scales.yAxes[0].position));
 }
 
