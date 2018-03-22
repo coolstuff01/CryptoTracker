@@ -142,7 +142,21 @@ const gentle_care_left = [255, 175, 189, "rgba(255, 175, 189, 1)"];
 const gentle_care_right = [255, 195, 160, "rgba(255, 195, 160, 1)"];
 var gentle_care_grad = [gentle_care_left, gentle_care_right];
 
-var theme_grad = morning_salad_grad;
+const rose_water_left = [93, 195, 228, "rgba(95, 195, 228, 1)"];
+const rose_water_right = [229, 93,135, "rgba(229, 93, 135, 1)"];
+var rose_water_grad = [rose_water_left, rose_water_right];
+const wedding_day_blues_left = [64, 224, 208, "rgba(64, 224, 208, 1)"];
+//const wedding_day_blues_right = [255, 0, 128, "rgba(255, 0, 128, 1)"];
+const wedding_day_blues_right = [255, 140, 0, "rgba(255, 140, 0, 1)"];
+var wedding_day_blues_grad = [wedding_day_blues_left, wedding_day_blues_right];
+const brady_brady_fun_fun_left = [0, 195, 255, "rgba(0, 195, 255, 1)"];
+const brady_brady_fun_fun_right = [255, 255, 28, "rgba(255, 255, 28, 1)"];
+var brady_brady_fun_fun_grad = [brady_brady_fun_fun_left, brady_brady_fun_fun_right];
+const king_yna_left = [253, 187, 45, "rgba(253, 187, 45, 1)"];
+const king_yna_right = [178, 31, 31, "rgba(178, 31, 31, 1)"];
+var king_yna_grad = [king_yna_left, king_yna_right];
+
+var theme_grad = rose_water_grad;
 
 
 
@@ -1255,6 +1269,18 @@ function theme_colour (theme) {
             break;
         case "gentle_care":
             theme_grad = gentle_care_grad;
+            break;
+        case "rose_water":
+            theme_grad = rose_water_grad;
+            break;
+        case "wedding_day_blues":
+            theme_grad = wedding_day_blues_grad;
+            break;
+        case "brady_brady_fun_fun":
+            theme_grad = brady_brady_fun_fun_grad;
+            break;
+        case "king_yna":
+            theme_grad = king_yna_grad;
             break;
     }
     update_chart();

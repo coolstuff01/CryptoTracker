@@ -1,4 +1,4 @@
-<option value="warm_flame">Warm Flame</option>
+<!-- <option value="warm_flame">Warm Flame</option>
 <option value="juicy_peach">Juicy Peach</option>
 <option value="lady_lips">Lady Lips</option>
 <option value="winter_neva">Winter Neva</option>
@@ -24,4 +24,8 @@
 <option value="nega">Nega</option>
 <option value="night_sky">Night Sky</option>
 <option value="gentle_care">Gentle Care</option>
-<option value="morning_salad" selected="selected">Morning Salad</option>
+<option value="morning_salad" selected="selected">Morning Salad</option> -->
+<option value="rose_water" selected="selected">Pale Blue to Pink</option>
+<option value="wedding_day_blues">Turquoise to Orange</option>
+<option value="brady_brady_fun_fun">Bright Blue to Yellow</option>
+<option value="king_yna">Yellow to Red</option>
