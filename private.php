@@ -7,7 +7,7 @@ if(empty($_SESSION['user'])){
     $g_your_email="Welcome!";
 	$usr_id=0;
 }else{
-	$g_your_email="Your e-mail: ".htmlentities($_SESSION['user']['email'], ENT_QUOTES, 'UTF-8');
+	$g_your_email="Profile: ".htmlentities($_SESSION['user']['email'], ENT_QUOTES, 'UTF-8');
 	
 	if($_SESSION['user']['email']=='kirill.savine@gmail.com' | $_SESSION['user']['email']=='nsitnikov1@gmail.com'){
 		$g_admin_logged=true;		
@@ -508,22 +508,20 @@ $(document).ready(function() {
 							</div>
 							<div class="col-sm-2">
 								<p class='control_ttl'>Action:</p> 
-								<a class="btn btn-default green_but"  href='#' onclick="on_add();"><span class=" fa fa-plus"></span>&nbsp;Add</a>
+								<a class="btn btn-default green_but"  href='#' onclick="on_add();">Add</a>
 								<p class='control_ttl'>&nbsp;</p> 
-								<a class="btn btn-default red_but" href='#' onclick="on_rem();"><span class=" fa fa-remove"></span>&nbsp;Remove</a>									
+								<a class="btn btn-default red_but" href='#' onclick="on_rem();">Remove</a>									
 							</div>
 
 							<div class="col-sm-3">
-								<p class='control_ttl'>Value Change Timeframe:</p>
-								<select id='chart_perc_timefr' onchange="change_perc_timefr(this.value)"><?php include('parts/perc_timefr.php'); ?></select>
-								<p class='control_ttl'>Base Currency:</p>
+								<!-- <p class='control_ttl'>Percent change:</p> -->
+								<p class='control_ttl'>Base currency:</p>
 								<select id='chart_base_cur' onchange="change_base_curr(this.value)"><?php include('parts/base_cur.php'); ?></select> 	
 							</div>				
 							<div class="col-sm-3 " style='text-align: right;float: right;'>
 								<span>
 								  <p class='control_ttl'>&nbsp;</p>
 								  <a href="javascript:;" class="btn btn-default dropdown-toggle blue_but" data-toggle="dropdown" aria-expanded="false">
-									<span class=" fa fa-user"></span>
 									<!--<img src="images/img.jpg" alt="">-->
 									<?php echo $g_your_email; ?>
 									<span class=" fa fa-angle-down"></span>
@@ -546,9 +544,8 @@ $(document).ready(function() {
 								</span>
 								  
 								<p class='control_ttl'>&nbsp;</p>
-								  <a href="#" class="btn btn-default dropdown-toggle info-number blue_but" data-toggle="modal" data-target="#settings_modal">
-									<span class=" fa fa-gear"></span>                
-									Settings
+								  <a href="#" class="btn btn-default dropdown-toggle info-number blue_but" data-toggle="modal" data-target="#settings_modal">              
+									Colour theme
 								  </a>													 
 							</div>
 							
@@ -621,24 +618,7 @@ $(document).ready(function() {
 <div class="col-md-6 col-sm-6 col-xs-12">
   <div class="x_panel tile fixed_height_320">
 	<div class="x_title">
-	  <h2>Asset value in base currency</h2>
-	  <ul class="nav navbar-right panel_toolbox">
-		<li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-		</li>
-		<li class="dropdown">
-		  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-		  <ul class="dropdown-menu" role="menu">
-			<li><a href="#">Settings 1</a>
-			</li>
-			<li><a href="#">Settings 2</a>
-			</li>			
-			<li><a href="#">Settings 3</a>
-			</li>
-		  </ul>
-		</li>
-		<li><a class="close-link"><i class="fa fa-close"></i></a>
-		</li>
-	  </ul>
+	  <h2>Value in base currency</h2>
 	  <div class="clearfix"></div>
 	</div>
 	<div class="x_content">			
@@ -651,23 +631,9 @@ $(document).ready(function() {
 <div class="col-md-6 col-sm-6 col-xs-12">
   <div class="x_panel tile fixed_height_320">
 	<div class="x_title">
-	  <h2>Asset value change over timeframe</h2>
+	  <h2>Value change</h2>
 	  <ul class="nav navbar-right panel_toolbox">
-		<li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-		</li>
-		<li class="dropdown">
-		  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-		  <ul class="dropdown-menu" role="menu">
-			<li><a href="#">Settings 1</a>
-			</li>
-			<li><a href="#">Settings 2</a>
-			</li>			
-			<li><a href="#">Settings 3</a>
-			</li>
-		  </ul>
-		</li>
-		<li><a class="close-link"><i class="fa fa-close"></i></a>
-		</li>
+		<select id='chart_perc_timefr' onchange="change_perc_timefr(this.value)"><?php include('parts/perc_timefr.php'); ?></select>
 	  </ul>
 	  <div class="clearfix"></div>
 	</div>
@@ -681,24 +647,7 @@ $(document).ready(function() {
 <div class="col-md-6 col-sm-6 col-xs-12">
   <div class="x_panel tile fixed_height_320">
 	<div class="x_title">
-	  <h2>Portfolio composition</h2>
-	  <ul class="nav navbar-right panel_toolbox">
-		<li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-		</li>
-		<li class="dropdown">
-		  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-		  <ul class="dropdown-menu" role="menu">
-			<li><a href="#">Settings 1</a>
-			</li>
-			<li><a href="#">Settings 2</a>
-			</li>			
-			<li><a href="#">Settings 3</a>
-			</li>
-		  </ul>
-		</li>
-		<li><a class="close-link"><i class="fa fa-close"></i></a>
-		</li>
-	  </ul>
+	  <h2>Portfolio breakdown</h2>
 	  <div class="clearfix"></div>
 	</div>
 	<div class="x_content">			
@@ -711,24 +660,7 @@ $(document).ready(function() {
 <div class="col-md-6 col-sm-6 col-xs-12">
   <div class="x_panel tile fixed_height_320">
   <div class="x_title">
-    <h2>Volume traded in base currency (USD if base is BTC)</h2>
-    <ul class="nav navbar-right panel_toolbox">
-    <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-    </li>
-    <li class="dropdown">
-      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-      <ul class="dropdown-menu" role="menu">
-      <li><a href="#">Settings 1</a>
-      </li>
-      <li><a href="#">Settings 2</a>
-      </li>     
-      <li><a href="#">Settings 3</a>
-      </li>
-      </ul>
-    </li>
-    <li><a class="close-link"><i class="fa fa-close"></i></a>
-    </li>
-    </ul>
+    <h2>Volume in base currency</h2>
     <div class="clearfix"></div>
   </div>
   <div class="x_content">     
@@ -741,24 +673,7 @@ $(document).ready(function() {
 <div id="date_slider"></div>
   <div class="x_panel tile fixed_height_320">
   <div class="x_title">
-    <h2>Live price (in USD)</h2>	
-    <ul class="nav navbar-right panel_toolbox">
-    <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-    </li>
-    <li class="dropdown">
-      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-      <ul class="dropdown-menu" role="menu">
-      <li><a href="#">Settings 1</a>
-      </li>
-      <li><a href="#">Settings 2</a>
-      </li>     
-      <li><a href="#">Settings 3</a>
-      </li>
-      </ul>
-    </li>
-    <li><a class="close-link"><i class="fa fa-close"></i></a>
-    </li>
-    </ul>
+    <h2>Live price (USD)</h2>	
     <div class="clearfix"></div>
   </div>
   <div class="x_content">     
@@ -772,23 +687,6 @@ $(document).ready(function() {
   <div class="x_panel tile fixed_height_320">
 	<div class="x_title">
 	  <h2>Portfolio Stats</h2>
-	  <ul class="nav navbar-right panel_toolbox">
-		<li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-		</li>
-		<li class="dropdown">
-		  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-		  <ul class="dropdown-menu" role="menu">
-			<li><a href="#">Settings 1</a>
-			</li>
-			<li><a href="#">Settings 2</a>
-			</li>			
-			<li><a href="#">Settings 3</a>
-			</li>
-		  </ul>
-		</li>
-		<li><a class="close-link"><i class="fa fa-close"></i></a>
-		</li>
-	  </ul>
 	  <div class="clearfix"></div>
 	</div>
 	<div class="x_content">			
@@ -810,8 +708,14 @@ $(document).ready(function() {
 
         <!-- footer content -->
         <footer>
+          <div class="pull-left">
+            Do you like what you see?<br />
+            Help us grow and introduce new features:<br />
+            Bitcoin 16bdZXQxijhbUfPAW5MTCNG8EeYdYh3rnd<br />
+            Ether 0x9354c044A77bc6AabAE3a6a8A7501F6C83CF4580<br />
+          </div>
           <div class="pull-right">
-            Any questions/concerns? <a href="mailto:support@cointork.com">Contact Support</a>
+            Partnership/Inquiries: <a href="mailto:support@cointork.com">Contact Support</a>
           </div>
           <div class="clearfix"></div>
         </footer>
