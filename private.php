@@ -712,10 +712,10 @@ $(document).ready(function() {
             Do you like what you see?<br />
             Help us grow and introduce new features:<br />
             Bitcoin 16bdZXQxijhbUfPAW5MTCNG8EeYdYh3rnd<br />
-            Ethereum 0x9354c044A77bc6AabAE3a6a8A7501F6C83CF4580<br />
+            Ethereum 0x9354c044A77bc6AabAE3a6a8A7501F6C83CF4580<br /><br />
           </div>
-          <div class="pull-right">
-            Partnership/Inquiries: <a href="mailto:support@cointork.com">Contact Support</a>
+          <div class="pull-left" style="clear:left">
+            Partnership/Inquiries: <a href="mailto:support@cointork.com">Contact Us</a>
           </div>
           <div class="clearfix"></div>
         </footer>
