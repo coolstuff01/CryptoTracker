@@ -3,23 +3,27 @@
 - Clean up website design
   - limit width (e.g. middle 70%)
   - make stats table mobile-friendly
-  - slider does not work on mobile
-  - create currency icons
-  - Decide what to do with KPI table sub-headings - remove
   - clear amount field after additing/deleting
-  - remove little up/down arrows
   - ensure fields are same width
-  - Narrow screen - chart.js tooltips are off
-
-- Enhancements:
-  - Make hyperlinks in stats table to select token name
-  - write updating script to update db every 5 minutes 
-  - add new item to return output in history API that returns max/min from the database based on token name
-
+  - optimize mobile view of charter, ensure main login button is at the top and menu is not at the bottom
+  - max width:  kpi table
+  - white canvas width fix
+  
+# Enhancements:
+ - Make hyperlinks in stats table to select token name
+ - write updating script to update db every 5 minutes 
+ - add new item to return output in history API that returns max/min from the database based on token name
+ - change volume chart to dollav value change chart
+ - add drop down to line chart that only controls line chart
+ 
+  
 # On Hold
 - Connect CoinAPI
 - Connect TradingView
 - possibly embed another token selector inside the Live Chart widget 
+- create currency icons
+- remove little up/down arrows
+- Narrow screen - chart.js tooltips are off
 
 # Landing
  - remove social
@@ -28,8 +32,11 @@
  - remove logo at the bottom
  - ensure chat is not covering bottom menu
  
+
  
 # Done
+  - Decide what to do with KPI table sub-headings - remove
+- slider does not work on mobile
 - Speed up landing page load
 - Fix out chart squishing
 - Functionality to autosave crypto assets
