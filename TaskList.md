@@ -21,6 +21,14 @@
 - Connect TradingView
 - possibly embed another token selector inside the Live Chart widget 
 
+# Landing
+ - remove social
+ - change color: **Nik, provide color in hex!**
+ - change text in "features" section: **Nik, provide text!**
+ - remove logo at the bottom
+ - ensure chat is not covering bottom menu
+ 
+ 
 # Done
 - Speed up landing page load
 - Fix out chart squishing
