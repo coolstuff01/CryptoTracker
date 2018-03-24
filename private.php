@@ -32,7 +32,7 @@ if(empty($_SESSION['user'])){
 	<meta http-equiv="Expires" content="0"/>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>Charter!!!</title>
+        <title>CoinTork Dashboard</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
