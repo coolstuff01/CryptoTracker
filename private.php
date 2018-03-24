@@ -517,7 +517,8 @@ $(document).ready(function() {
 								<!-- <p class='control_ttl'>Percent change:</p> -->
 								<p class='control_ttl'>Base currency:</p>
 								<select id='chart_base_cur' onchange="change_base_curr(this.value)"><?php include('parts/base_cur.php'); ?></select> 	
-							</div>				
+								<p class='control_ttl'>Colour theme:</p>
+								<select id='chart_theme' onchange="theme_colour(this)"><?php include('parts/themes.php'); ?></select>			
 							<div class="col-sm-3 " style='text-align: right;float: right;'>
 								<span>
 								  <p class='control_ttl'>&nbsp;</p>
@@ -541,12 +542,7 @@ $(document).ready(function() {
 									</li>																	
 									<li><a href="javascript:;">Help</a></li>
 								  </ul>	
-								</span>
-								  
-								<p class='control_ttl'>&nbsp;</p>
-								  <a href="#" class="btn btn-default dropdown-toggle info-number blue_but" data-toggle="modal" data-target="#settings_modal">              
-									Colour theme
-								  </a>													 
+								</span>												 
 							</div>
 							
 						</div>
