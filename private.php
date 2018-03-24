@@ -295,6 +295,22 @@ $(document).ready(function(){
 })
 
 
+// adapt main menu depending on screen width
+$(document).ready(function() {
+	if($( window ).width()<768){
+
+		$('#men1').append($("#men3").html())
+		$('#men2').prepend($("#men4").html())
+		$("#men3").remove()
+		$("#men4").remove()
+		$("#men1").attr("class","col-sm-6");
+		$("#men2").attr("class","col-sm-6");		
+		$("#men1").css("width","50%");		
+		$("#men2").css("width","50%");		
+		
+	}
+	
+})
 
 
 
@@ -498,29 +514,34 @@ $(document).ready(function() {
             <nav>
 				
 					<div class="container-fluid">
-						<div class="row">
-							<div class="col-sm-3">
+						<div class="row" id='main_navigation'>
+							<div class="col-sm-3" id='men1'>
 								<p class='control_ttl'>Token name:</p> 
 								<!--<select id='token_name' name="token_name" class="selectpicker with-ajax" data-live-search="true" data-actions-box="false" ></select>-->						
 								<select style='width:100%' class="selectpicker" id='token_name'  id='token_name' data-show-subtext="true" data-live-search="true"></select>						
 								<p class='control_ttl'>Token amount:</p> 
 								<input style='width:100%' type="number" min="0" id="token_amount" name="token_amount" >															
 							</div>
-							<div class="col-sm-2">
+							<div class="col-sm-3" id='men2'>
 								<p class='control_ttl'>Action:</p> 
 								<a class="btn btn-default green_but"  href='#' onclick="on_add();">Add</a>
 								<p class='control_ttl'>&nbsp;</p> 
 								<a class="btn btn-default red_but" href='#' onclick="on_rem();">Remove</a>									
 							</div>
 
-							<div class="col-sm-3">
+							<div class="col-sm-3" id='men3'>
 								<!-- <p class='control_ttl'>Percent change:</p> -->
 								<p class='control_ttl'>Base currency:</p>
 								<select id='chart_base_cur' onchange="change_base_curr(this.value)"><?php include('parts/base_cur.php'); ?></select> 	
 								<p class='control_ttl'>Colour theme:</p>
 								<select id='chart_theme' onchange="theme_colour(this)"><?php include('parts/themes.php'); ?></select>			
-							<div class="col-sm-3 " style='text-align: right;float: right;'>
-								<span>
+							
+							</div>
+							<div class="col-sm-3" id='men4'>
+							<!--<div class="col-sm-4 " >-->
+								
+								
+								
 								  <p class='control_ttl'>&nbsp;</p>
 								  <a href="javascript:;" class="btn btn-default dropdown-toggle blue_but" data-toggle="dropdown" aria-expanded="false">
 									<!--<img src="images/img.jpg" alt="">-->
@@ -540,9 +561,8 @@ $(document).ready(function() {
 										?>
 															
 									</li>																	
-									<li><a href="javascript:;">Help</a></li>
 								  </ul>	
-								</span>												 
+								
 							</div>
 							
 						</div>
