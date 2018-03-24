@@ -705,13 +705,12 @@ $(document).ready(function() {
         <!-- footer content -->
         <footer>
           <div class="pull-left">
-            Do you like what you see?<br />
-            Help us grow and introduce new features:<br />
-            Bitcoin 16bdZXQxijhbUfPAW5MTCNG8EeYdYh3rnd<br />
-            Ethereum 0x9354c044A77bc6AabAE3a6a8A7501F6C83CF4580<br /><br />
+            Help us by <b>donating:</b><br />
+            <b>Bitcoin</b> 16bdZXQxijhbUfPAW5MTCNG8EeYdYh3rnd<br />
+            <b>Ethereum</b> 0x9354c044A77bc6AabAE3a6a8A7501F6C83CF4580<br /><br />
           </div>
           <div class="pull-left" style="clear:left">
-            Partnership/Inquiries: <a href="mailto:support@cointork.com">Contact Us</a>
+            Partnership/Inquiries: <a href="mailto:support@cointork.com"><b>Contact Us</b></a>
           </div>
           <div class="clearfix"></div>
         </footer>
