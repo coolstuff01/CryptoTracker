@@ -15,7 +15,6 @@ if(empty($_SESSION['user'])){
 	
 	$usr_id=$_SESSION['user']['id'];	
 }
-
 	// update tockenlist if it is older than 24 hrs
 		
 	//include('save_tocken_list.php'); // no longer used
@@ -199,7 +198,8 @@ $(document).ready(function(){
 	$("#left_menu").hide();
 	$("#main_content").css("margin-left","0px");	
 	$("#menu_bar").css("margin-left","0px");	
-	loadSelectItems($("#token_name"),response.slice(0,9))		 // load 10 most popular tokens 
+	loadSelectItems($("#token_name"),response.slice(0,10))		 // load 10 most popular tokens 
+	loadSelectItems($("#token_name_live"),response.slice(0,10))		 // load 10 most popular tokens 
 	
 	$("#loading_id").hide();
 	$("#loader").hide();
@@ -214,54 +214,17 @@ $(document).ready(function(){
 	
 	setTimeout(function(){$("#wrapper").toggleClass("toggled","slow")}, 250);  		
 	
-	$("#token_amount").spinner()
-	$("#chart_perc_timefr").selectpicker()	
-	$("#chart_base_cur").selectpicker()
-	$("#chart_theme").selectpicker()
-	
-	
-	
-	/* handler for token search START */
-	var inp_selector;
-	inp_selector="#menu_bar > div > nav > div > div > div:nth-child(1) > div > div > div > input";	  
-			
-	$(document).on('click', "#menu_bar > div > nav > div > div > div:nth-child(1) > div > button", function() {
-		$(inp_selector).attr("placeholder","Start typing token name")	
-	})
-	
-	$(document).on('input', inp_selector, function() {
-		cur_search=$(inp_selector).val().toLowerCase();
+	$("#token_amount").spinner();
+	$("#chart_perc_timefr").selectpicker();
+	$("#chart_base_cur").selectpicker();
+	$("#chart_theme").selectpicker();
 
-		var array=[];
-		for (i = 0; i < response.length; i++) {	
-			
-			var cur_search_list=[
-				response[i]['id'].toLowerCase(),
-				response[i]['name'].toLowerCase(),
-				response[i]['symbol'].toLowerCase()			
-			];	
-			/*
-			cur_search_list.push(response[i]['id'].toLowerCase());
-			cur_search_list.push(response[i]['name'].toLowerCase());
-			cur_search_list.push(response[i]['symbol'].toLowerCase());
-			*/
-			
-			if(in_array_partial(cur_search,cur_search_list)){
-				array.push(response[i])		
-				if(array.length>20){break}				
-			}
-					
-		};
-		//console.log(array)
-		loadSelectItems($("#token_name"),array)	
-		
-	});	
-	
-	/* handler for token search END */
-	
+	token_search("#menu_bar > div > nav > div > div > div:nth-child(1) > div > div > div > input", "#menu_bar > div > nav > div > div > div:nth-child(1) > div > button", "token_name");
+	token_search("#main_content_span > div:nth-child(6) > div.x_panel.tile.fixed_height_320 > div.x_title > ul > div > div > div > input", "#main_content_span > div:nth-child(6) > div.x_panel.tile.fixed_height_320 > div.x_title > ul > div > button", "token_name_live");
 
 	// make up menu START
-	$( "#token_name" ).parents('div').find(".btn-group").css("width","100%")
+	$( "#token_name" ).parents('div').find(".btn-group").css("width","100%");
+	$( "#token_name_live" ).parents('div').find(".btn-group").css("width","100%");
 	$( ".ui-spinner" ).css("width","100%");
 	$( ".btn.btn-default" ).css("margin-bottom","0px");
 	$( ".btn.btn-default" ).css("width","100%");
@@ -339,7 +302,21 @@ $(document).ready(function() {
 			
 	});
 
-});		  
+});	
+
+
+$(document).ready(function() {
+	$('.selectpicker').selectpicker({
+    	dropupAuto: false
+	});
+
+	$("#main_content_span > div:nth-child(6) > div.x_panel.tile.fixed_height_320 > div.x_title > ul > div > div > ul").on("click", function(){
+		$("#token_name_live").trigger("change");
+	})
+	$("#token_name_live").on("change", function(){
+		update_line();
+	})
+})	  
 
 
 
@@ -519,7 +496,7 @@ $(document).ready(function() {
 							<div class="col-sm-3" id='men1'>
 								<p class='control_ttl'>Token name:</p> 
 								<!--<select id='token_name' name="token_name" class="selectpicker with-ajax" data-live-search="true" data-actions-box="false" ></select>-->						
-								<select style='width:100%' class="selectpicker" id='token_name'  id='token_name' data-show-subtext="true" data-live-search="true"></select>						
+								<select style='width:100%' class="selectpicker" id='token_name' data-show-subtext="true" data-live-search="true"></select>						
 								<p class='control_ttl'>Token amount:</p> 
 								<input style='width:100%' type="number" min="0" id="token_amount" name="token_amount" >															
 							</div>
@@ -690,7 +667,10 @@ $(document).ready(function() {
 <center><div style='width:91%' id="date_slider"></div></center>
   <div class="x_panel tile fixed_height_320">
   <div class="x_title">
-    <h2>Live price (USD)</h2>	
+    <h2>Live price (USD)</h2>
+    <ul class="nav navbar-right panel_toolbox">
+    	<select style='width:100%' class="selectpicker" id='token_name_live' data-show-subtext="true" data-live-search="true"></select>
+    </ul>	
     <div class="clearfix"></div>
   </div>
   <div class="x_content">     

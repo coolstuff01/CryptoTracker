@@ -35,10 +35,8 @@
 	
 }
 
-
-/* reduce line height in drop down */
-.dropdown-menu li a{
-	line-height: 0.9 !important;
+.x_title h2{
+	overflow: visible !important;
 }
 
 

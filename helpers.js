@@ -252,6 +252,53 @@ function on_rem(){
 }
 
 
+function token_search(input_path, button_path, element_id){
+		/* handler for token search START */
+	var inp_selector;
+	inp_selector = input_path;
+	//inp_selector="#menu_bar > div > nav > div > div > div:nth-child(1) > div > div > div > input";	  
+
+	$(document).on('click', button_path, function() {
+		$(inp_selector).attr("placeholder","Start typing token name")	
+	})			
+	// $(document).on('click', "#menu_bar > div > nav > div > div > div:nth-child(1) > div > button", function() {
+	// 	$(inp_selector).attr("placeholder","Start typing token name")	
+	// })
+	
+	$(document).on('input', inp_selector, function() {
+		cur_search=$(inp_selector).val().toLowerCase();
+
+		var array=[];
+		for (i = 0; i < response.length; i++) {	
+			
+			var cur_search_list=[
+				response[i]['id'].toLowerCase(),
+				response[i]['name'].toLowerCase(),
+				response[i]['symbol'].toLowerCase()			
+			];	
+			/*
+			cur_search_list.push(response[i]['id'].toLowerCase());
+			cur_search_list.push(response[i]['name'].toLowerCase());
+			cur_search_list.push(response[i]['symbol'].toLowerCase());
+			*/
+			
+			if(in_array_partial(cur_search,cur_search_list)){
+				array.push(response[i])		
+				if(array.length>10){break}				
+			}
+					
+		};
+		//console.log(array)
+		loadSelectItems($("#" + element_id),array)	
+		// loadSelectItems($("#token_name"),array)	
+		
+	});	
+
+	
+	
+	/* handler for token search END */
+}
+
 // this makes the stats table - need to be called every time the dash is refresh
 function make_stats_table(){
 	
@@ -277,3 +324,4 @@ function make_stats_table(){
 		$('.control.sorting_disabled').html("")
 		
 	}
+
