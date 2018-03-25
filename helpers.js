@@ -252,6 +252,7 @@ function on_rem(){
 }
 
 
+<<<<<<< HEAD
 function token_search(input_path, button_path, element_id){
 		/* handler for token search START */
 	var inp_selector;
@@ -298,3 +299,30 @@ function token_search(input_path, button_path, element_id){
 	
 	/* handler for token search END */
 }
+=======
+// this makes the stats table - need to be called every time the dash is refresh
+function make_stats_table(){
+	
+		$('#stats_table').dataTable().fnDestroy(); // attempt to destroy table first
+		$('#stats_table').DataTable( {
+			responsive: {
+				details: {
+					type: 'column'
+				}
+			},
+			columnDefs: [ {
+				className: 'control',
+				orderable: false,
+				targets:   0
+			} ],
+			order: [ 1, 'asc' ]
+		} );
+		
+		//fix the show/hide buttons
+		$('.control').html("[+]")
+		$('.control').css("cursor","pointer")
+		$('.control').css("color","#0073ff")
+		$('.control.sorting_disabled').html("")
+		
+	}
+>>>>>>> 3e66a8c98c3873a4aeb3b3adc6f81cf0b4b77828

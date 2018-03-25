@@ -679,15 +679,24 @@ function populate_val_dicts () {
     // kpis_table = document.getElementById("kpis_table");
     // kpis_table.innerHTML = "";
     // kpis_table.innerHTML = "<tr><th width='150px'>Total in BTC</th><th width='150px'>Total in USD</th><th width='150px'>Total in " + url_completion_curr + "</th><th width='150px'>Total Change 1h USD</th><th width='150px'>Total Change 24h USD</th><th width='150px'>Total Change 7d USD</th></tr>";
-
+	//$('#stats_table').DataTable()
     stats_table = document.getElementById("stats_table");
-    stats_table.innerHTML = "";
-    stats_table.innerHTML = "<tr><th width='100px'>#</th><th width='100px'>Token</th><th width='100px'>Quantity</th><th width='100px'>Price in " + base_currency + "</th><th width='100px'>Total in " + base_currency + "</th><th width='100px'>Change 1h USD</th><th width='100px'>Change 24h USD</th><th width='100px'>Change 7d USD</th><th width='100px'>Rank</th><th width=100px'>Market Cap " + market_cap_attr.split("_")[2].toUpperCase() + "</th><th width=100px'>Volume 24h " + volume_attr.split("_")[2].toUpperCase() + "</th></tr>";
+    stats_table_head = document.getElementById("stats_table_thead");
+    //stats_table_body = document.getElementById("stats_table_tbody");
+   stats_table.innerHTML="";
+   headings="<tr><th width='100px'>#</th><th width='100px'>Token</th><th width='100px'>Quantity</th><th width='100px'>Price in " + base_currency + "</th><th width='100px'>Total in " + base_currency + "</th><th width='100px'>Change 1h USD</th><th width='100px'>Change 24h USD</th><th width='100px'>Change 7d USD</th><th width='100px'>Rank</th><th width=100px'>Market Cap " + market_cap_attr.split("_")[2].toUpperCase() + "</th><th width=100px'>Volume 24h " + volume_attr.split("_")[2].toUpperCase() + "</th></tr>";
+   stats_table.innerHTML = "<thead id='stats_table_thead'>"+headings+"</thead><tbody id='stats_table_tbody'></tbody>";
+    
+    
 
     // Loop through necessary currencies and pull data from API         
     for (var key in currs) {
         for (var item = 0; item < response.length; item++) {
+			
+			
+			
             if (response[item].symbol === key) {
+				console.log(response[item].symbol+" ~ "+key);
                 [amounts_btc[key], amounts_loc[key], amounts_usd[key], change_1h[key], change_24h[key], change_7d[key], volume_usd[key], volume_base[key]] = [response[item].price_btc * currs[key], Math.round(response[item][price_attr] * currs[key] * precision) / precision, Math.round(response[item].price_usd * currs[key] * precision) / precision, response[item].percent_change_1h, response[item].percent_change_24h, response[item].percent_change_7d, response[item]["24h_volume_usd"], response[item][volume_attr]];
 
                 num_tokens++;
@@ -697,7 +706,9 @@ function populate_val_dicts () {
                 total_loc += currs[key] * response[item]["price_" + url_completion_curr.toLowerCase()];
                 
                 stats_table.innerHTML += "<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>";
-                setCellContents(stats_table, num_tokens, 0, num_tokens, 0);
+
+				setCellContents(stats_table, num_tokens, 0, num_tokens, 0);
+
                 setCellContents(stats_table, num_tokens, 1, key, 0);
                 setCellContents(stats_table, num_tokens, 2, (Math.round(currs[key] * precision) / precision).toLocaleString(), 0);
                 setCellContents(stats_table, num_tokens, 3, det_curr_sign_beg + parseFloat(Math.round(response[item][price_attr] * 100) / 100).toLocaleString() + det_curr_sign_end, 0);
@@ -713,11 +724,15 @@ function populate_val_dicts () {
                     setCellContents(stats_table, num_tokens, 9, det_curr_sign_beg + Math.round(response[item][market_cap_attr]).toLocaleString() + det_curr_sign_end, 0);
                     setCellContents(stats_table, num_tokens, 10, det_curr_sign_beg + Math.round(response[item][volume_attr]).toLocaleString() + det_curr_sign_end, 0);
                 }
+				stats_table.innerHTML=stats_table.innerHTML.replace("<tbody>","").replace("</tbody>","");
+				
+				//console.log(stats_table.innerHTML);
             }
         }
     }
-    
-    //alert(stats_table);
+	stats_table.innerHTML=stats_table.innerHTML.replace("<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>","");
+	make_stats_table();
+	
     
     for (var key in amounts_usd) {
         total_change_1h += (amounts_usd[key] / total_usd) * change_1h[key];

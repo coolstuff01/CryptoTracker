@@ -35,6 +35,7 @@
 	
 }
 
+<<<<<<< HEAD
 /* Reducing line height of token drop down menus */
 .dropdown-menu li a{
 	line-height: 1 !important;
@@ -42,4 +43,21 @@
 
 .x_title h2{
 	overflow: visible !important;
+=======
+
+/* reduce line height in drop down */
+.dropdown-menu li a{
+	line-height: 0.9 !important;
+}
+
+
+/*footer fix */
+@media (min-width: 992px)
+footer {
+    margin-left: 0px !important;
+}
+
+footer {
+    margin-left: 0px !important;
+>>>>>>> 3e66a8c98c3873a4aeb3b3adc6f81cf0b4b77828
 }
