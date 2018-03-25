@@ -603,7 +603,7 @@ $(document).ready(function() {
 
           <br >
 			
-		<div style='max-width:1400px;margin: auto;' id='main_row_wrap' >
+		<div id='main_row_wrap' >
           <div class="row" >
 
 	  
@@ -668,7 +668,7 @@ $(document).ready(function() {
 </div>  
 
 <div class="col-md-12 col-sm-12 col-xs-12">
-<div id="date_slider"></div>
+<center><div style='width:91%' id="date_slider"></div></center>
   <div class="x_panel tile fixed_height_320">
   <div class="x_title">
     <h2>Live price (USD)</h2>

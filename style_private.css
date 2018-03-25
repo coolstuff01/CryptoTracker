@@ -35,15 +35,9 @@
 	
 }
 
-<<<<<<< HEAD
-/* Reducing line height of token drop down menus */
-.dropdown-menu li a{
-	line-height: 1 !important;
-}
-
 .x_title h2{
 	overflow: visible !important;
-=======
+}
 
 
 /*footer fix */
@@ -54,9 +48,16 @@ footer {
 
 footer {
     margin-left: 0px !important;
-<<<<<<< HEAD
->>>>>>> 3e66a8c98c3873a4aeb3b3adc6f81cf0b4b77828
 }
-=======
+
+/* max width settings */
+
+#kpis_tile > div{
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;		
 }
->>>>>>> ba1293c9b890e508d2f7e093cfd23246475150b1
+
+#main_row_wrap{
+	max-width:1200px;margin: auto;
+}
