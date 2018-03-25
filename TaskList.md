@@ -8,6 +8,8 @@
   - optimize mobile view of charter, ensure main login button is at the top and menu is not at the bottom
   - max width:  kpi table
   - white canvas width fix
+  - make logo fly out on charter
+  - 
   
 # Enhancements:
  - Make hyperlinks in stats table to select token name
