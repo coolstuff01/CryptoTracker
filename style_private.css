@@ -45,11 +45,6 @@
 	overflow: visible !important;
 =======
 
-/* reduce line height in drop down */
-.dropdown-menu li a{
-	line-height: 0.9 !important;
-}
-
 
 /*footer fix */
 @media (min-width: 992px)
@@ -59,5 +54,9 @@ footer {
 
 footer {
     margin-left: 0px !important;
+<<<<<<< HEAD
 >>>>>>> 3e66a8c98c3873a4aeb3b3adc6f81cf0b4b77828
 }
+=======
+}
+>>>>>>> ba1293c9b890e508d2f7e093cfd23246475150b1
