@@ -284,7 +284,7 @@ function token_search(input_path, button_path, element_id){
 			
 			if(in_array_partial(cur_search,cur_search_list)){
 				array.push(response[i])		
-				if(array.length>20){break}				
+				if(array.length>10){break}				
 			}
 					
 		};

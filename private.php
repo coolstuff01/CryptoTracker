@@ -195,8 +195,8 @@ $(document).ready(function(){
 	$("#left_menu").hide();
 	$("#main_content").css("margin-left","0px");	
 	$("#menu_bar").css("margin-left","0px");	
-	loadSelectItems($("#token_name"),response.slice(0,9))		 // load 10 most popular tokens 
-	loadSelectItems($("#token_name_live"),response.slice(0,9))		 // load 10 most popular tokens 
+	loadSelectItems($("#token_name"),response.slice(0,10))		 // load 10 most popular tokens 
+	loadSelectItems($("#token_name_live"),response.slice(0,10))		 // load 10 most popular tokens 
 	
 	$("#loading_id").hide();
 	$("#loader").hide();
@@ -211,17 +211,17 @@ $(document).ready(function(){
 	
 	setTimeout(function(){$("#wrapper").toggleClass("toggled","slow")}, 250);  		
 	
-	$("#token_amount").spinner()
-	$("#chart_perc_timefr").selectpicker()	
-	$("#chart_base_cur").selectpicker()
-	$("#chart_theme").selectpicker()
+	$("#token_amount").spinner();
+	$("#chart_perc_timefr").selectpicker();
+	$("#chart_base_cur").selectpicker();
+	$("#chart_theme").selectpicker();
 
 	token_search("#menu_bar > div > nav > div > div > div:nth-child(1) > div > div > div > input", "#menu_bar > div > nav > div > div > div:nth-child(1) > div > button", "token_name");
 	token_search("#main_content_span > div:nth-child(6) > div.x_panel.tile.fixed_height_320 > div.x_title > ul > div > div > div > input", "#main_content_span > div:nth-child(6) > div.x_panel.tile.fixed_height_320 > div.x_title > ul > div > button", "token_name_live");
 
 	// make up menu START
-	$( "#token_name" ).parents('div').find(".btn-group").css("width","100%")
-	$( "#token_name_live" ).parents('div').find(".btn-group").css("width","100%")
+	$( "#token_name" ).parents('div').find(".btn-group").css("width","100%");
+	$( "#token_name_live" ).parents('div').find(".btn-group").css("width","100%");
 	$( ".ui-spinner" ).css("width","100%");
 	$( ".btn.btn-default" ).css("margin-bottom","0px");
 	$( ".btn.btn-default" ).css("width","100%");
@@ -302,7 +302,21 @@ $(document).ready(function() {
 			
 	});
 
-});		  
+});	
+
+
+$(document).ready(function() {
+	$('.selectpicker').selectpicker({
+    	dropupAuto: false
+	});
+
+	$("#main_content_span > div:nth-child(6) > div.x_panel.tile.fixed_height_320 > div.x_title > ul > div > div > ul").on("click", function(){
+		$("#token_name_live").trigger("change");
+	})
+	$("#token_name_live").on("change", function(){
+		update_line();
+	})
+})	  
 
 
 
@@ -654,7 +668,7 @@ $(document).ready(function() {
   <div class="x_panel tile fixed_height_320">
   <div class="x_title">
     <h2>Live price (USD)</h2>
-    <ul class="top_nav nav navbar-right panel_toolbox">
+    <ul class="nav navbar-right panel_toolbox">
     	<select style='width:100%' class="selectpicker" id='token_name_live' data-show-subtext="true" data-live-search="true"></select>
     </ul>	
     <div class="clearfix"></div>

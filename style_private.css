@@ -34,3 +34,12 @@
 	color:lightgrey !important;
 	
 }
+
+/* Reducing line height of token drop down menus */
+.dropdown-menu li a{
+	line-height: 1 !important;
+}
+
+.x_title h2{
+	overflow: visible !important;
+}

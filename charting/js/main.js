@@ -169,7 +169,6 @@ for (var item = 0; item < response.length; item++) {
     symbol_to_id[response[item].symbol] = response[item].id;
 }
 
-
 // this function completes the url for API call
 function curr_url (){
     if (base_currency === "BTC" || base_currency === "USD") {
@@ -433,6 +432,7 @@ function addToken(token, amount){
         if ($.isEmptyObject(currs)){
             if (charts_first_call === 0){
                 coinMarketCap();
+                update_line();
                 // charts_first_call = 1;
             }   
             // Initialize the counter
@@ -495,7 +495,7 @@ function update_chart(){
     update_percent();
     update_volume();
     update_pie();
-    update_line();
+    // update_line();
 }
 
 
@@ -570,7 +570,7 @@ function update_pie () {
 // updates Line Chard
 function update_line () {
 
-    var token = $('#token_name').val();
+    var token = $('#token_name_live').val();
     token = token.substring(token.lastIndexOf("(")+1,token.lastIndexOf(")"));
     live_price_curr = symbol_to_id[token];
 
@@ -611,9 +611,6 @@ function update_line () {
     }
 
     line_chart_data = get_line_chart_data();
-
-    var token = $('#token_name').val();
-    token = token.substring(token.lastIndexOf("(")+1,token.lastIndexOf(")"));
 
     livePriceChart.data = {
       labels: Object.keys(line_chart_data),
