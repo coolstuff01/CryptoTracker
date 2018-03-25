@@ -306,6 +306,10 @@ $(document).ready(function() {
 
 
 $(document).ready(function() {
+	if (g_u !== 0) {
+		update_line();
+	}
+
 	$('.selectpicker').selectpicker({
     	dropupAuto: false
 	});
