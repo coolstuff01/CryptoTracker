@@ -34,3 +34,20 @@
 	color:lightgrey !important;
 	
 }
+
+
+/* reduce line height in drop down */
+.dropdown-menu li a{
+	line-height: 0.9 !important;
+}
+
+
+/*footer fix */
+@media (min-width: 992px)
+footer {
+    margin-left: 0px !important;
+}
+
+footer {
+    margin-left: 0px !important;
+}

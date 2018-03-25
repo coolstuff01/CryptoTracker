@@ -250,3 +250,30 @@ function on_rem(){
 	send_protfolio(currs,g_u); // send new currency mix to the DB (ignored if user is not logged)
 			
 }
+
+
+// this makes the stats table - need to be called every time the dash is refresh
+function make_stats_table(){
+	
+		$('#stats_table').dataTable().fnDestroy(); // attempt to destroy table first
+		$('#stats_table').DataTable( {
+			responsive: {
+				details: {
+					type: 'column'
+				}
+			},
+			columnDefs: [ {
+				className: 'control',
+				orderable: false,
+				targets:   0
+			} ],
+			order: [ 1, 'asc' ]
+		} );
+		
+		//fix the show/hide buttons
+		$('.control').html("[+]")
+		$('.control').css("cursor","pointer")
+		$('.control').css("color","#0073ff")
+		$('.control.sorting_disabled').html("")
+		
+	}

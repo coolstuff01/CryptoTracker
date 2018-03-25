@@ -97,10 +97,13 @@ if(empty($_SESSION['user'])){
 	<script src="charting/vendor/modernizr/modernizr-3.5.0.min.js"></script>		
 	
 <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/responsive/2.2.1/js/dataTables.responsive.min.js"></script>
 <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/buttons/1.4.2/js/dataTables.buttons.min.js"></script>
 <script type="text/javascript" language="javascript" src="//cdn.datatables.net/buttons/1.4.2/js/buttons.html5.min.js"></script>
 <link href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" rel="stylesheet" />
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.4.2/css/buttons.dataTables.min.css">
+
+
 		
 	<link rel="stylesheet" href="vendor/jQRangeSlider-5.7.2/css/iThing.css" type="text/css" />
 	<script src="vendor/jQRangeSlider-5.7.2/jQDateRangeSlider-min.js"></script>
@@ -190,7 +193,8 @@ $(document).ready(function(){
 	// NProgress END
 		
 	
-		
+	$('#stats_table_div').css("height","auto");
+	
 		
 	$("#left_menu").hide();
 	$("#main_content").css("margin-left","0px");	
@@ -298,7 +302,6 @@ $(document).ready(function(){
 // adapt main menu depending on screen width
 $(document).ready(function() {
 	if($( window ).width()<768){
-
 		$('#men1').append($("#men3").html())
 		$('#men2').prepend($("#men4").html())
 		$("#men3").remove()
@@ -306,12 +309,10 @@ $(document).ready(function() {
 		$("#men1").attr("class","col-sm-6");
 		$("#men2").attr("class","col-sm-6");		
 		$("#men1").css("width","50%");		
-		$("#men2").css("width","50%");		
-		
+		$("#men2").css("width","50%");				
 	}
 	
 })
-
 
 
 $(document).ready(function() {
@@ -700,7 +701,7 @@ $(document).ready(function() {
 
 
 <div class="col-md-12 col-sm-12 col-xs-12">
-  <div class="x_panel tile fixed_height_320">
+  <div class="x_panel tile fixed_height_320" id='stats_table_div'>
 	<div class="x_title">
 	  <h2>Portfolio Stats</h2>
 	  <div class="clearfix"></div>
@@ -723,7 +724,7 @@ $(document).ready(function() {
         <!-- /page content -->
 
         <!-- footer content -->
-        <footer>
+        <footer style='background:#F7F7F7'>
           <div class="pull-left">
             Help us by <b>donating:</b><br />
             <b>Bitcoin</b> 16bdZXQxijhbUfPAW5MTCNG8EeYdYh3rnd<br />
@@ -732,7 +733,7 @@ $(document).ready(function() {
           <div class="pull-left" style="clear:left">
             Partnership/Inquiries: <a href="mailto:support@cointork.com"><b>Contact Us</b></a>
           </div>
-          <div class="clearfix"></div>
+          
         </footer>
         <!-- /footer content -->
       </div>
