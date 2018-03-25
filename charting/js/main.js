@@ -1296,6 +1296,7 @@ function theme_colour (theme) {
             break;
     }
     update_chart();
+    update_line();
 }
 
 // This function updates the stats table

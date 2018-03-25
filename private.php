@@ -15,7 +15,6 @@ if(empty($_SESSION['user'])){
 	
 	$usr_id=$_SESSION['user']['id'];	
 }
-
 	// update tockenlist if it is older than 24 hrs
 		
 	//include('save_tocken_list.php'); // no longer used
