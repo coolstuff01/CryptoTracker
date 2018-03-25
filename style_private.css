@@ -38,7 +38,7 @@
 
 /* reduce line height in drop down */
 .dropdown-menu li a{
-	line-height: 0.9 !important;
+	line-height: 1 !important;
 }
 
 
