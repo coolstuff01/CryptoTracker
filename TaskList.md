@@ -9,7 +9,47 @@
   - max width:  kpi table
   - white canvas width fix
   - make logo fly out on charter
-  - 
+  
+# Landing page:
+	1) The page: cointork.com/welcome loads a long time when it has never opened before - users might think it's not working and leave. Is there anything that can be done about it?
+	2) The Support Chat shouldn't be open by default - it looks too tacky as it is. In fact, I think we should remove it for now, it doesn't serve any purpose at the moment. After I collapsed - it has this huge Let's Chat thing - I am not a huge fan.
+	3) The logo letter colours should be changed to a slightly darker grey (maybe… not sure - what are your thoughts? maybe  we should ask someone else). There shouldn't be any space between COIN and TORK. Also, I think letter T should be in a different colour.
+	4) The background picture should change to something different - I am not feeling this Toronto skyline but I am not sure what to change it to - we should brainstorm and try out a few idea.
+	5) The texts throughout landing page will change but we can take care of that later.
+	6) The foreground colour that is over the picture of Toronto skyline is too sad and gloomy, we should choose some other colour theme, maybe ask someone artsy, or try to figure it out ourselves.
+	7) The symbol before Try It Out should be removed.
+	8) Magnifying Glass icon from the navigation menu at the top should be removed.
+	9) Social media icons on landing page (Twitter, Facebook, LinkedIn should be removed)
+	10) The navigation menu at the top should have more menu items for missing sections.
+	11) In the nagivation menu at the top, there is no need to underscore Home
+	12) Add Team section to landing page.
+	13) Remove the logo at the bottom of the page on the left.
+	14) To my previous points about colours - since our Submit Button is in nice Purple colour - maybe we can have the rest of the page in a similar coloud theme.
+	15) In the browser tab - CT favicon or whatever its called shouldn't be black. I am in incognito and can barely see anything because of that.
+  16) CoinTork | Welcome to CoinTork should also change for SEO, as well as other texts on the page.
+  
+Cointork.com (not logged in):
+	1) The buttons and fields are too far apart. They should start where that donation text start underneath.
+	2) Donations at the bottom will be replaced by a button. More on that later.
+	3) Welcome button will should be recoloured in purple same as Submit on landing page.
+	4) The fields like Bitcoin and Token amount should be shrunk, they are too wide.
+	5) Arrows up and down should be removed from the Token amount field.
+	6) After the coins are added, and the charts are drawn, table contents, total KPI display may need to be changed to properly fit things and show the most important stuff but we can take care of this later.
+Some other notes from iNotes:
+  7) Make KPI tile headings bold
+  
+# Cointork.com (logged in):
+	1) When I go to log in - we should replace the trees picture and we should combine this page with the Login page from the landing page (we shouldn't have 2 login versions).
+	2) The orange colour on this login page should be changed to purple if we choose to go with purple.
+	3) The Profile button generates the dropdown somewhere further down the page when on mobile device.
+	4) I cannot switch colour theme when on a mobile device.
+	5) The time sliders still don't fit on the page properly (maybe we should use the sliders that allow the user to type in the date into each of the ends.
+  6) Detailed table contents to be discussed.
+  
+# Mobile chart potential fixes:
+	1) Show tooltips as the mouse hovers along X axis - https://jsfiddle.net/a077grhm/
+  2) The fact that we cannot get the tooltips to show properly when we click on bar and pie charts is due to change in Aspect Ratio from what I can tell. Do you have ideas on how to fix it?
+  
   
 # Enhancements:
  - Make hyperlinks in stats table to select token name
@@ -17,7 +57,6 @@
  - add new item to return output in history API that returns max/min from the database based on token name
  - change volume chart to dollav value change chart
  - add drop down to line chart that only controls line chart
- 
   
 # On Hold
 - Connect CoinAPI
@@ -33,8 +72,6 @@
  - change text in "features" section: **Nik, provide text!**
  - remove logo at the bottom
  - ensure chat is not covering bottom menu
- 
-
  
 # Done
   - Decide what to do with KPI table sub-headings - remove
