@@ -54,7 +54,7 @@ if(empty($_SESSION['user'])){
     <!--<link href="vendor/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">-->
 
     <!-- Custom Theme Style -->
-    <link href="vendor/gentelella/css/custom.min.css" rel="stylesheet">
+    <link href="vendor/gentelella/css/custom.css" rel="stylesheet">
     
 	
 

@@ -364,6 +364,10 @@ body .container.body .right_col {
     border-radius: 0;
     height: 57px
 }
+
+
+
+
 @media (max-width: 991px) {
     .nav-md .container.body .right_col,
     .nav-md .container.body .top_nav {
@@ -381,6 +385,8 @@ body .container.body .right_col {
         padding: 10px !important
     }
 }
+
+
 @media (max-width: 1200px) {
     .x_title h2 {
         width: 62%;
@@ -388,8 +394,8 @@ body .container.body .right_col {
     }
     .tile,
     .graph {
-        zoom: 85%;
-        height: inherit
+        /*zoom: 85%;*/  /* Kirill 20180401*/
+        /*height: inherit*/ /* Kirill 20180401*/
     }
 }
 @media (max-width: 1270px) and (min-width: 192px) {
@@ -397,6 +403,11 @@ body .container.body .right_col {
         display: none
     }
 }
+
+
+
+
+
 .left_col .mCSB_scrollTools {
     width: 6px
 }
@@ -527,7 +538,8 @@ body {
     margin: 10px 0
 }
 .fixed_height_320 {
-    height: 320px
+    /*height: 320px*/ /* Kirill 20180401*/
+    height: auto;
 }
 .fixed_height_390 {
     height: 390px

@@ -294,8 +294,7 @@ function token_search(input_path, button_path, element_id){
 		
 	});	
 
-	
-	
+
 	/* handler for token search END */
 }
 
