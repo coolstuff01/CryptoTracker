@@ -26,28 +26,27 @@
 17) priority 2 - try freeze top nav bar  - **K**
   
 # Cointork.com (not logged in):
-1) The buttons and fields are too far apart. They should start where that donation text start underneath.
-2) Donations at the bottom will be replaced by a button. More on that later.
-3) Welcome button will should be recoloured in purple same as Submit on landing page.
-4) The fields like Bitcoin and Token amount should be shrunk, they are too wide.
-5) Arrows up and down should be removed from the Token amount field.
-6) After the coins are added, and the charts are drawn, table contents, total KPI display may need to be changed to properly fit things and show the most important stuff but we can take care of this later.
+1) The buttons and fields are too far apart. They should start where that donation text start underneath. **K**
+2) Donations at the bottom will be replaced by a button. More on that later. Welcome button will should be recoloured in purple same as Submit on landing page.  **N**
+3) Remove grey subtext IDs in drop-down menus in all drop downs. - **K**
+4) The fields like Bitcoin and Token amount should be shrunk, they are too wide. **K**
+5) Arrows up and down should be removed from the Token amount field. **N**
+6) After the coins are added, and the charts are drawn, table contents, total KPI display may need to be changed to properly fit things and show the most important stuff but we can take care of this later. **TBD**
 Some other notes from iNotes:
-7) Make KPI tile headings bold
+7) Make KPI tile headings bold **N**
 8) Limit number of KPI table items to 4 - **N**
   
 # Cointork.com (logged in):
-1) When I go to log in - we should replace the trees picture and we should combine this page with the Login page from the landing page (we shouldn't have 2 login versions).
-2) The orange colour on this login page should be changed to purple if we choose to go with purple.
-3) The Profile button generates the dropdown somewhere further down the page when on mobile device.
-4) I cannot switch colour theme when on a mobile device.
-5) The time sliders still don't fit on the page properly (maybe we should use the sliders that allow the user to type in the date into each of the ends.
-6) Detailed table contents to be discussed.
+1) When I go to log in - we should combine this page with the Login page from the landing page (we shouldn't have 2 login versions). **K**
+3) The Profile button generates the dropdown somewhere further down the page when on mobile device. **K**
+4) I cannot switch colour theme when on a mobile device. **TBD**
+5) The time sliders still don't fit on the page properly (maybe we should use the sliders that allow the user to type in the date into each of the ends). Add buttons "YTD", "Month-to-date", "last week", "last month", etc - **N**
+6) Detailed table contents to be discussed.  - **TBD**
 
 
 # Mobile chart potential fixes:
-1) Show tooltips as the mouse hovers along X axis - https://jsfiddle.net/a077grhm/
-2) The fact that we cannot get the tooltips to show properly when we click on bar and pie charts is due to change in Aspect Ratio from what I can tell. Do you have ideas on how to fix it?
+1) Show tooltips as the mouse hovers along X axis - https://jsfiddle.net/a077grhm/ **N**
+2) The fact that we cannot get the tooltips to show properly when we click on bar and pie charts is due to change in Aspect Ratio from what I can tell. Do you have ideas on how to fix it? - **first try to remove  fixed height in gentella .min.css**
   
   
 # Enhancements:
@@ -66,14 +65,11 @@ Some other notes from iNotes:
 - Narrow screen - chart.js tooltips are off
 
 # Landing
- - remove social
  - change color: **Nik, provide color in hex!**
  - change text in "features" section: **Nik, provide text!**
- - remove logo at the bottom
- - ensure chat is not covering bottom menu
  
 # Done
-  - Decide what to do with KPI table sub-headings - remove
+ - Decide what to do with KPI table sub-headings - remove
 - slider does not work on mobile
 - Speed up landing page load
 - Fix out chart squishing
