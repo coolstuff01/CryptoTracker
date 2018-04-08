@@ -32,7 +32,6 @@
 4) The fields like Bitcoin and Token amount should be shrunk, they are too wide. **K**
 5) Arrows up and down should be removed from the Token amount field. **N**
 6) After the coins are added, and the charts are drawn, table contents, total KPI display may need to be changed to properly fit things and show the most important stuff but we can take care of this later. **TBD**
-Some other notes from iNotes:
 7) Make KPI tile headings bold **N**
 8) Limit number of KPI table items to 4 - **N**
   
