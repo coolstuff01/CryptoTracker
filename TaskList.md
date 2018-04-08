@@ -65,11 +65,10 @@ Some other notes from iNotes:
 - Narrow screen - chart.js tooltips are off
 
 # Landing
- - change color: **Nik, provide color in hex!**
  - change text in "features" section: **Nik, provide text!**
  
 # Done
- - Decide what to do with KPI table sub-headings - remove
+- Decide what to do with KPI table sub-headings - remove
 - slider does not work on mobile
 - Speed up landing page load
 - Fix out chart squishing
@@ -83,3 +82,4 @@ Some other notes from iNotes:
 - update legend for the Line Price chart
 - Load all currencies into DB
 - make the location of slider below the Line Chart
+- Landing: change color
