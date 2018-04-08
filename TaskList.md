@@ -53,7 +53,7 @@ Some other notes from iNotes:
  - Make hyperlinks in stats table to select token name
  - write updating script to update db every 5 minutes 
  - add new item to return output in history API that returns max/min from the database based on token name
- - change volume chart to dollav value change chart
+ - change volume chart to dollar value change chart
  - add drop down to line chart that only controls line chart
   
 # On Hold
