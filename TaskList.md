@@ -45,7 +45,6 @@
 
 # Mobile chart potential fixes:
 1) Show tooltips as the mouse hovers along X axis - https://jsfiddle.net/a077grhm/ **N**
-2) The fact that we cannot get the tooltips to show properly when we click on bar and pie charts is due to change in Aspect Ratio from what I can tell. Do you have ideas on how to fix it? - **first try to remove  fixed height in gentella .min.css**
   
   
 # Enhancements:
@@ -82,3 +81,4 @@
 - Load all currencies into DB
 - make the location of slider below the Line Chart
 - Landing: change color
+- Tooltips correctly clickable on mobile
