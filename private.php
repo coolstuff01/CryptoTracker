@@ -79,8 +79,8 @@ if(empty($_SESSION['user'])){
     <!-- NProgress -->
     <script src="vendor/nprogress/nprogress.js"></script>
     <!-- Chart.js -->
-    <!--<script src="vendor/Chart.js/dist/Chart.min.js"></script>-->
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
+    <script src="vendor/Chart.js/dist/Chart.v2.js"></script>
+	<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>-->
     <!-- gauge.js -->
     <!--<script src="vendor/gauge.js/dist/gauge.min.js"></script>-->
     <!-- bootstrap-progressbar -->
@@ -564,8 +564,6 @@ $(document).ready(function() {
  <!-- Settings Modal -->
   <div class="modal fade" id="settings_modal" role="dialog">
     <div class="modal-dialog">
-    
-      <!-- Modal content-->
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -575,7 +573,7 @@ $(document).ready(function() {
 			<div class="container-fluid">
 				<div class="row">
 					<div class="col-sm-6">					
-						<p lass='control_ttl'>Theme:</p>
+						<p class='control_ttl'>Theme:</p>
 						<select id='chart_theme' onchange="theme_colour(this)"><?php include('parts/themes.php'); ?></select>	
 					</div>
 				</div>

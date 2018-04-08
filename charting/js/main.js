@@ -159,7 +159,6 @@ var king_yna_grad = [king_yna_left, king_yna_right];
 var theme_grad = rose_water_grad;
 
 
-
 // set first url link
 cmc_url_active = curr_url();
 // Get crypto current crypto information
@@ -403,8 +402,10 @@ function chart_actions(operation){
     
     amount = parseFloat(document.getElementById("token_amount").value);
     if (operation === "add"){
+        document.getElementById("token_amount").value = "";
         addToken(token, amount);
     } else if (operation === "remove"){
+        document.getElementById("token_amount").value = "";
         removeToken(token, amount);
     } else if (operation === "refresh"){
         ;
@@ -1073,6 +1074,7 @@ function coinMarketCap(){
             }]
           },
           tooltips: {
+            mode: 'label',
             callbacks: {
                 label: function(tooltipItems, data) { 
                     return "$ " + (Math.round(tooltipItems.yLabel * 100) / 100).toLocaleString(); // return det_curr_sign_beg + " " + tooltipItems.xLabel.toLocaleString() + det_curr_sign_end;
@@ -1325,6 +1327,7 @@ function countMeDown(){
     document.getElementById("Countdown").innerHTML = "The page will refresh in " + countdown + " seconds";
     countdown--;
 }
+
 
 
 ////HEX TO RGB COLOUR CONVERTER//////////////
