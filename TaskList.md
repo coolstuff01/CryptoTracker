@@ -3,7 +3,6 @@
 - Clean up website design
   - limit width (e.g. middle 70%) - **k**
   - make stats table mobile-friendly - **k**
-  - clear amount field after additing/deleting - **N**
   - ensure fields are same width - **K**
   - make logo fly out on charter - **K**
   
@@ -82,3 +81,4 @@
 - Landing: change color
 - Tooltips correctly clickable on mobile
 - Arrows up and down removed from the Token amount field
+- clear amount field after additing/removing
