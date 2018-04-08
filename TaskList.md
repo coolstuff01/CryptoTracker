@@ -30,7 +30,6 @@
 2) Donations at the bottom will be replaced by a button. More on that later. Welcome button will should be recoloured in purple same as Submit on landing page.  **N**
 3) Remove grey subtext IDs in drop-down menus in all drop downs. - **K**
 4) The fields like Bitcoin and Token amount should be shrunk, they are too wide. **K**
-5) Arrows up and down should be removed from the Token amount field. **N**
 6) After the coins are added, and the charts are drawn, table contents, total KPI display may need to be changed to properly fit things and show the most important stuff but we can take care of this later. **TBD**
 7) Make KPI tile headings bold **N**
 8) Limit number of KPI table items to 4 - **N**
@@ -82,3 +81,4 @@
 - make the location of slider below the Line Chart
 - Landing: change color
 - Tooltips correctly clickable on mobile
+- Arrows up and down removed from the Token amount field
