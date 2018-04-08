@@ -2,7 +2,7 @@
 
 - Clean up website design
   - limit width (e.g. middle 70%) - **k**
-  - make stats table mobile-friendly - **k**
+  - make stats table mobile-friendly - **k**
   - ensure fields are same width - **K**
   - make logo fly out on charter - **K**
   
