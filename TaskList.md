@@ -2,8 +2,7 @@
 
 - Clean up website design
   - limit width (e.g. middle 70%) - **k**
-  - make stats table mobile-friendly - **k**
-  - clear amount field after additing/deleting - **N**
+  - make stats table mobile-friendly - **k**
   - ensure fields are same width - **K**
   - make logo fly out on charter - **K**
   
@@ -30,9 +29,7 @@
 2) Donations at the bottom will be replaced by a button. More on that later. Welcome button will should be recoloured in purple same as Submit on landing page.  **N**
 3) Remove grey subtext IDs in drop-down menus in all drop downs. - **K**
 4) The fields like Bitcoin and Token amount should be shrunk, they are too wide. **K**
-5) Arrows up and down should be removed from the Token amount field. **N**
 6) After the coins are added, and the charts are drawn, table contents, total KPI display may need to be changed to properly fit things and show the most important stuff but we can take care of this later. **TBD**
-Some other notes from iNotes:
 7) Make KPI tile headings bold **N**
 8) Limit number of KPI table items to 4 - **N**
   
@@ -46,14 +43,13 @@ Some other notes from iNotes:
 
 # Mobile chart potential fixes:
 1) Show tooltips as the mouse hovers along X axis - https://jsfiddle.net/a077grhm/ **N**
-2) The fact that we cannot get the tooltips to show properly when we click on bar and pie charts is due to change in Aspect Ratio from what I can tell. Do you have ideas on how to fix it? - **first try to remove  fixed height in gentella .min.css**
   
   
 # Enhancements:
  - Make hyperlinks in stats table to select token name
  - write updating script to update db every 5 minutes 
  - add new item to return output in history API that returns max/min from the database based on token name
- - change volume chart to dollav value change chart
+ - change volume chart to dollar value change chart
  - add drop down to line chart that only controls line chart
   
 # On Hold
@@ -65,11 +61,10 @@ Some other notes from iNotes:
 - Narrow screen - chart.js tooltips are off
 
 # Landing
- - change color: **Nik, provide color in hex!**
  - change text in "features" section: **Nik, provide text!**
  
 # Done
- - Decide what to do with KPI table sub-headings - remove
+- Decide what to do with KPI table sub-headings - remove
 - slider does not work on mobile
 - Speed up landing page load
 - Fix out chart squishing
@@ -83,3 +78,7 @@ Some other notes from iNotes:
 - update legend for the Line Price chart
 - Load all currencies into DB
 - make the location of slider below the Line Chart
+- Landing: change color
+- Tooltips correctly clickable on mobile
+- Arrows up and down removed from the Token amount field
+- clear amount field after additing/removing
