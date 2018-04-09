@@ -61,3 +61,20 @@ input[type=number]::-webkit-outer-spin-button {
 input[type=number] {
   -moz-appearance: textfield;
 }
+
+.kpi_tile{
+  font-weight: 500;
+}
+
+table.dataTable thead th, 
+table.dataTable tfoot th {
+  font-weight: 500;
+}
+
+.btn-default{
+  border-color: #999;
+}
+
+.ui-widget.ui-widget-content{
+  border: 1px solid #999;
+}

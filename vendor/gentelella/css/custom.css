@@ -502,7 +502,7 @@ body .container.body .right_col {
     background: #D9DEE4
 }
 body {
-    color: #73879C;
+    color: #2a3f54;
     background: #2A3F54;
     font-family: "Helvetica Neue", Roboto, Arial, "Droid Sans", sans-serif;
     font-size: 13px;
@@ -1103,7 +1103,7 @@ h2 {
     margin-left: 10px
 }
 .x_title span {
-    color: #BDBDBD
+    color: #2a3f54
 }
 .x_content {
     padding: 0 5px 6px;
@@ -1538,7 +1538,7 @@ ul.msg_list li a .message {
     border-top-right-radius: 0
 }
 .dropdown-menu>li>a {
-    color: #5A738E
+    color: #2a3f54
 }
 .navbar-nav .open .dropdown-menu {
     position: absolute;
@@ -1740,7 +1740,7 @@ span.right {
 .tile_count .tile_stats_count .count {
     font-size: 30px;
     line-height: 47px;
-    font-weight: 600
+    font-weight: 500
 }
 @media (min-width: 768px) {
     .tile_count .tile_stats_count .count {
