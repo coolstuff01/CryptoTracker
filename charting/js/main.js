@@ -577,6 +577,8 @@ function update_line () {
 
     if (live_price_curr !== prev_curr || charts_first_call === 0) {
 
+        document.getElementById("live_price_timefr").selectedIndex = "0";
+
         if (charts_first_call === 0) {
             $("#date_slider").dateRangeSlider();
             $("#date_slider").dateRangeSlider("bounds", new Date(price_first_date).add(1).day(), new Date(price_last_date).add(1).day());
@@ -1186,6 +1188,101 @@ function change_perc_timefr (timefr) {
     parse_cmc_data();
     change_sorted = sort_curr(eval("change_" + tm_frame));
     update_percent();
+}
+
+// Live price chart timeframe selection
+function change_live_price_timefr (timefr) {
+    switch (timefr) {
+        case "All":
+            get_date_range();
+            $("#date_slider").dateRangeSlider("bounds", new Date(price_first_date).add(1).day(), new Date(price_last_date).add(1).day());
+            $("#date_slider").dateRangeSlider("min", new Date(price_first_date).add(1).day());
+            $("#date_slider").dateRangeSlider("max", new Date(price_last_date).add(1).day());
+            update_line();
+            break;
+        case "1 year":
+            temp_date = new Date();
+            temp_date.setFullYear(temp_date.getFullYear() - 1);
+            temp_date.setDate(temp_date.getDate() + 1);
+            get_date_range();
+            if (price_first_date < temp_date.getFullYear() + "-" + pad_zero(temp_date.getMonth() + 1) + "-" + pad_zero(temp_date.getDate())) {
+                price_first_date = temp_date.getFullYear() + "-" + pad_zero(temp_date.getMonth() + 1) + "-" + pad_zero(temp_date.getDate());
+            }
+            price_last_date = today_date.getFullYear() + "-" + pad_zero(today_date.getMonth() + 1) + "-" + pad_zero(today_date.getDate());
+            $("#date_slider").dateRangeSlider("bounds", new Date(price_first_date).add(1).day(), new Date(price_last_date).add(1).day());
+            $("#date_slider").dateRangeSlider("min", new Date(price_first_date).add(1).day());
+            $("#date_slider").dateRangeSlider("max", new Date(price_last_date).add(1).day());
+            update_line();
+            break;
+        case "6 months":
+            temp_date = new Date();
+            temp_date.setMonth(temp_date.getMonth() - 6);
+            temp_date.setDate(temp_date.getDate() + 1);
+            get_date_range();
+            if (price_first_date < temp_date.getFullYear() + "-" + pad_zero(temp_date.getMonth() + 1) + "-" + pad_zero(temp_date.getDate())) {
+                price_first_date = temp_date.getFullYear() + "-" + pad_zero(temp_date.getMonth() + 1) + "-" + pad_zero(temp_date.getDate());
+            }
+            price_last_date = today_date.getFullYear() + "-" + pad_zero(today_date.getMonth() + 1) + "-" + pad_zero(today_date.getDate());
+            $("#date_slider").dateRangeSlider("bounds", new Date(price_first_date).add(1).day(), new Date(price_last_date).add(1).day());
+            $("#date_slider").dateRangeSlider("min", new Date(price_first_date).add(1).day());
+            $("#date_slider").dateRangeSlider("max", new Date(price_last_date).add(1).day());
+            update_line();
+            break;
+        case "3 months":
+            temp_date = new Date();
+            temp_date.setMonth(temp_date.getMonth() - 3);
+            temp_date.setDate(temp_date.getDate() + 1);
+            get_date_range();
+            if (price_first_date < temp_date.getFullYear() + "-" + pad_zero(temp_date.getMonth() + 1) + "-" + pad_zero(temp_date.getDate())) {
+                price_first_date = temp_date.getFullYear() + "-" + pad_zero(temp_date.getMonth() + 1) + "-" + pad_zero(temp_date.getDate());
+            }
+            price_last_date = today_date.getFullYear() + "-" + pad_zero(today_date.getMonth() + 1) + "-" + pad_zero(today_date.getDate());
+            $("#date_slider").dateRangeSlider("bounds", new Date(price_first_date).add(1).day(), new Date(price_last_date).add(1).day());
+            $("#date_slider").dateRangeSlider("min", new Date(price_first_date).add(1).day());
+            $("#date_slider").dateRangeSlider("max", new Date(price_last_date).add(1).day());
+            update_line();
+            break;
+        case "1 month":
+            temp_date = new Date();
+            temp_date.setMonth(temp_date.getMonth() - 1);
+            temp_date.setDate(temp_date.getDate() + 1);
+            get_date_range();
+            if (price_first_date < temp_date.getFullYear() + "-" + pad_zero(temp_date.getMonth() + 1) + "-" + pad_zero(temp_date.getDate())) {
+                price_first_date = temp_date.getFullYear() + "-" + pad_zero(temp_date.getMonth() + 1) + "-" + pad_zero(temp_date.getDate());
+            }
+            price_last_date = today_date.getFullYear() + "-" + pad_zero(today_date.getMonth() + 1) + "-" + pad_zero(today_date.getDate());
+            $("#date_slider").dateRangeSlider("bounds", new Date(price_first_date).add(1).day(), new Date(price_last_date).add(1).day());
+            $("#date_slider").dateRangeSlider("min", new Date(price_first_date).add(1).day());
+            $("#date_slider").dateRangeSlider("max", new Date(price_last_date).add(1).day());
+            update_line();
+            break;
+        case "1 week":
+            temp_date = new Date();
+            temp_date.setDate(temp_date.getDate() - 7);
+            get_date_range();
+            if (price_first_date < temp_date.getFullYear() + "-" + pad_zero(temp_date.getMonth() + 1) + "-" + pad_zero(temp_date.getDate())) {
+                price_first_date = temp_date.getFullYear() + "-" + pad_zero(temp_date.getMonth() + 1) + "-" + pad_zero(temp_date.getDate());
+            }
+            price_last_date = today_date.getFullYear() + "-" + pad_zero(today_date.getMonth() + 1) + "-" + pad_zero(today_date.getDate());
+            $("#date_slider").dateRangeSlider("bounds", new Date(price_first_date).add(1).day(), new Date(price_last_date).add(1).day());
+            $("#date_slider").dateRangeSlider("min", new Date(price_first_date).add(1).day());
+            $("#date_slider").dateRangeSlider("max", new Date(price_last_date).add(1).day());
+            update_line();
+            break;
+        case "1 day":
+            temp_date = new Date();
+            temp_date.setDate(temp_date.getDate() - 1);
+            get_date_range();
+            if (price_first_date < temp_date.getFullYear() + "-" + pad_zero(temp_date.getMonth() + 1) + "-" + pad_zero(temp_date.getDate())) {
+                price_first_date = temp_date.getFullYear() + "-" + pad_zero(temp_date.getMonth() + 1) + "-" + pad_zero(temp_date.getDate());
+            }
+            price_last_date = today_date.getFullYear() + "-" + pad_zero(today_date.getMonth() + 1) + "-" + pad_zero(today_date.getDate());
+            $("#date_slider").dateRangeSlider("bounds", new Date(price_first_date).add(1).day(), new Date(price_last_date).add(1).day());
+            $("#date_slider").dateRangeSlider("min", new Date(price_first_date).add(1).day());
+            $("#date_slider").dateRangeSlider("max", new Date(price_last_date).add(1).day());
+            update_line();
+            break;
+    }
 }
 
 // Base reporting currency

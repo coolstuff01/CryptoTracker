@@ -672,6 +672,7 @@ $(document).ready(function() {
     <h2>Live price (USD)</h2>
     <ul class="nav navbar-right panel_toolbox">
     	<select style='width:100%' class="selectpicker" id='token_name_live' data-show-subtext="true" data-live-search="true"></select>
+    	<select id='live_price_timefr' onchange="change_live_price_timefr(this.value)"><?php include('parts/live_price_timefr.php'); ?></select>
     </ul>	
     <div class="clearfix"></div>
   </div>
