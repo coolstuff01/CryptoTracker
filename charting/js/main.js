@@ -1205,11 +1205,11 @@ function change_live_price_timefr (timefr) {
             temp_date.setFullYear(temp_date.getFullYear() - 1);
             temp_date.setDate(temp_date.getDate() + 1);
             get_date_range();
+            $("#date_slider").dateRangeSlider("bounds", new Date(price_first_date).add(1).day(), new Date(price_last_date).add(1).day());
             if (price_first_date < temp_date.getFullYear() + "-" + pad_zero(temp_date.getMonth() + 1) + "-" + pad_zero(temp_date.getDate())) {
                 price_first_date = temp_date.getFullYear() + "-" + pad_zero(temp_date.getMonth() + 1) + "-" + pad_zero(temp_date.getDate());
             }
             price_last_date = today_date.getFullYear() + "-" + pad_zero(today_date.getMonth() + 1) + "-" + pad_zero(today_date.getDate());
-            $("#date_slider").dateRangeSlider("bounds", new Date(price_first_date).add(1).day(), new Date(price_last_date).add(1).day());
             $("#date_slider").dateRangeSlider("min", new Date(price_first_date).add(1).day());
             $("#date_slider").dateRangeSlider("max", new Date(price_last_date).add(1).day());
             update_line();
@@ -1219,11 +1219,11 @@ function change_live_price_timefr (timefr) {
             temp_date.setMonth(temp_date.getMonth() - 6);
             temp_date.setDate(temp_date.getDate() + 1);
             get_date_range();
+            $("#date_slider").dateRangeSlider("bounds", new Date(price_first_date).add(1).day(), new Date(price_last_date).add(1).day());
             if (price_first_date < temp_date.getFullYear() + "-" + pad_zero(temp_date.getMonth() + 1) + "-" + pad_zero(temp_date.getDate())) {
                 price_first_date = temp_date.getFullYear() + "-" + pad_zero(temp_date.getMonth() + 1) + "-" + pad_zero(temp_date.getDate());
             }
             price_last_date = today_date.getFullYear() + "-" + pad_zero(today_date.getMonth() + 1) + "-" + pad_zero(today_date.getDate());
-            $("#date_slider").dateRangeSlider("bounds", new Date(price_first_date).add(1).day(), new Date(price_last_date).add(1).day());
             $("#date_slider").dateRangeSlider("min", new Date(price_first_date).add(1).day());
             $("#date_slider").dateRangeSlider("max", new Date(price_last_date).add(1).day());
             update_line();
@@ -1233,11 +1233,11 @@ function change_live_price_timefr (timefr) {
             temp_date.setMonth(temp_date.getMonth() - 3);
             temp_date.setDate(temp_date.getDate() + 1);
             get_date_range();
+            $("#date_slider").dateRangeSlider("bounds", new Date(price_first_date).add(1).day(), new Date(price_last_date).add(1).day());
             if (price_first_date < temp_date.getFullYear() + "-" + pad_zero(temp_date.getMonth() + 1) + "-" + pad_zero(temp_date.getDate())) {
                 price_first_date = temp_date.getFullYear() + "-" + pad_zero(temp_date.getMonth() + 1) + "-" + pad_zero(temp_date.getDate());
             }
             price_last_date = today_date.getFullYear() + "-" + pad_zero(today_date.getMonth() + 1) + "-" + pad_zero(today_date.getDate());
-            $("#date_slider").dateRangeSlider("bounds", new Date(price_first_date).add(1).day(), new Date(price_last_date).add(1).day());
             $("#date_slider").dateRangeSlider("min", new Date(price_first_date).add(1).day());
             $("#date_slider").dateRangeSlider("max", new Date(price_last_date).add(1).day());
             update_line();
@@ -1247,11 +1247,11 @@ function change_live_price_timefr (timefr) {
             temp_date.setMonth(temp_date.getMonth() - 1);
             temp_date.setDate(temp_date.getDate() + 1);
             get_date_range();
+            $("#date_slider").dateRangeSlider("bounds", new Date(price_first_date).add(1).day(), new Date(price_last_date).add(1).day());
             if (price_first_date < temp_date.getFullYear() + "-" + pad_zero(temp_date.getMonth() + 1) + "-" + pad_zero(temp_date.getDate())) {
                 price_first_date = temp_date.getFullYear() + "-" + pad_zero(temp_date.getMonth() + 1) + "-" + pad_zero(temp_date.getDate());
             }
             price_last_date = today_date.getFullYear() + "-" + pad_zero(today_date.getMonth() + 1) + "-" + pad_zero(today_date.getDate());
-            $("#date_slider").dateRangeSlider("bounds", new Date(price_first_date).add(1).day(), new Date(price_last_date).add(1).day());
             $("#date_slider").dateRangeSlider("min", new Date(price_first_date).add(1).day());
             $("#date_slider").dateRangeSlider("max", new Date(price_last_date).add(1).day());
             update_line();
@@ -1260,11 +1260,11 @@ function change_live_price_timefr (timefr) {
             temp_date = new Date();
             temp_date.setDate(temp_date.getDate() - 7);
             get_date_range();
+            $("#date_slider").dateRangeSlider("bounds", new Date(price_first_date).add(1).day(), new Date(price_last_date).add(1).day());
             if (price_first_date < temp_date.getFullYear() + "-" + pad_zero(temp_date.getMonth() + 1) + "-" + pad_zero(temp_date.getDate())) {
                 price_first_date = temp_date.getFullYear() + "-" + pad_zero(temp_date.getMonth() + 1) + "-" + pad_zero(temp_date.getDate());
             }
             price_last_date = today_date.getFullYear() + "-" + pad_zero(today_date.getMonth() + 1) + "-" + pad_zero(today_date.getDate());
-            $("#date_slider").dateRangeSlider("bounds", new Date(price_first_date).add(1).day(), new Date(price_last_date).add(1).day());
             $("#date_slider").dateRangeSlider("min", new Date(price_first_date).add(1).day());
             $("#date_slider").dateRangeSlider("max", new Date(price_last_date).add(1).day());
             update_line();
@@ -1273,11 +1273,11 @@ function change_live_price_timefr (timefr) {
             temp_date = new Date();
             temp_date.setDate(temp_date.getDate() - 1);
             get_date_range();
+            $("#date_slider").dateRangeSlider("bounds", new Date(price_first_date).add(1).day(), new Date(price_last_date).add(1).day());
             if (price_first_date < temp_date.getFullYear() + "-" + pad_zero(temp_date.getMonth() + 1) + "-" + pad_zero(temp_date.getDate())) {
                 price_first_date = temp_date.getFullYear() + "-" + pad_zero(temp_date.getMonth() + 1) + "-" + pad_zero(temp_date.getDate());
             }
             price_last_date = today_date.getFullYear() + "-" + pad_zero(today_date.getMonth() + 1) + "-" + pad_zero(today_date.getDate());
-            $("#date_slider").dateRangeSlider("bounds", new Date(price_first_date).add(1).day(), new Date(price_last_date).add(1).day());
             $("#date_slider").dateRangeSlider("min", new Date(price_first_date).add(1).day());
             $("#date_slider").dateRangeSlider("max", new Date(price_last_date).add(1).day());
             update_line();
