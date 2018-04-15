@@ -1,5 +1,8 @@
-# Task List
+ - color scheme on mobild - **K**
+ - drop down in line chart - **K**
+ - 
 
+# Task List
 - Clean up website design
   - limit width (e.g. middle 70%) - **k**
   - make stats table mobile-friendly - **k**
