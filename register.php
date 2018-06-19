@@ -12,10 +12,11 @@
 	require("vendor/phpmailer/send_mail.php"); 
 	
 	$message="";
-	
+	include("vendor/securimage/securimage.php");  
 	if(empty($_POST)){
-		include("vendor/simple_php_captcha/simple-php-captcha.php");  
-		$_SESSION['captcha'] = simple_php_captcha();	
+	
+		$_SESSION['captcha'] = new Securimage();
+		//echo $_SESSION['captcha']['image_src'];
 	};
 	
     if(!empty($_POST)){ 
@@ -27,8 +28,10 @@
 		$message="";
 		$message_colo="red";
 		$reg_ok=true;
+		echo $_SESSION['captcha'];
+		//if(strtolower($_SESSION['captcha']['code'])!=strtolower($_POST['capt'])){$reg_ok=false;$message=$message."<br> make sure you enetered correct characters from image.";}
 		
-		if(strtolower($_SESSION['captcha']['code'])!=strtolower($_POST['capt'])){$reg_ok=false;$message=$message."<br> make sure you enetered correct characters from image.";}
+		if($_SESSION['captcha'] ->check($_POST['capt']) == false){$reg_ok=false;$message=$message."<br> make sure you enetered correct characters from image.";}
 		
         // Ensure that the user has entered a non-empty username 
         if(empty($_POST['username'])){$reg_ok=false;$message=$message."<br> enter a username.";} ;
@@ -169,8 +172,10 @@
 			<input type="text" name="email" value="" placeholder="Your E-Mail"/> 
 			<input type="password" name="password1" value="" placeholder="Password"/> 
 			<input type="password" name="password2" value="" placeholder="Repeat Password"/> 					
-			<input type="text" name="capt" value="" placeholder="Enter characters from the image below"/> 
-			<img src="<?php echo $_SESSION['captcha']['image_src']; ?>"></img><br>			
+			<input type="text" name="capt" size="10" maxlength="6" />
+			<a href="#" onclick="document.getElementById('captcha').src = '/securimage/securimage_show.php?' + Math.random(); return false">[ Different Image ]</a> 
+			<img id="captcha" src="vendor/securimage/securimage_show.php" alt="CAPTCHA Image" />
+			
 			<p style='color:<?php echo $message_colo; ?>'><?php echo $message; ?></p>
 			<input type="submit" value="Register" class='login_button' id="subm"/> 			
 		</form> 
